@@ -3,6 +3,7 @@ from unittest import TestCase
 
 from publican.engine.tests.sample import company
 from publican.engine.time import Quarter
+from .. common import Filing
 from . import irs_941
 
 class Test941(TestCase):
@@ -14,7 +15,8 @@ class Test941(TestCase):
             )
 
     def test_reckon(self):
-        f = irs_941.reckon(company, Quarter(2012, 1))
+        f = Filing(irs_941, Quarter(2012, 1))
+        f.tally(company)
         p = f.pages[0]
         self.assertEqual(p.line2, Decimal('7500.00'))
         self.assertEqual(p.line3, Decimal('896.25'))

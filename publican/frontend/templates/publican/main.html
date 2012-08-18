@@ -3,8 +3,13 @@
 {% block body %}
 <div>Welcome!</div>
 
-{% for due_month, form, filing in seq %}
-<p>{{ due_month }} {{ form.name }} {{ form.title }} {{ filing.due_date }} $ {{ filing.balance_due }}</p>
+{% for display_month, filings in seq %}
+{{ display_month|date:"Y-M" }}
+<ul>
+  {% for filing in filings %}
+  <li>{{ filing.form.name }} {{ form.title }} {{ filing.due_date }} $ {{ filing.balance_due }}</li>
+  {% endfor %}
+</ul>
 {% endfor %}
 
 {% endblock %}

@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 from decimal import Decimal
 
 from publican.engine.time import quarters_range
-from ..common import Filing, cents, zero
+from ..common import cents, zero
 
 _arbitrary = Decimal('0.1195')
 _point104 = Decimal('.104')
@@ -18,7 +18,9 @@ def periods(company):
     return list(quarters_range(company.incorporation_date, company.now))
 
 
-def reckon(company, period):
+def tally(company, filing):
+    period = filing.period
+
     tlist = list(company.transactions(
         within=period,
         debit_type='business',
@@ -27,7 +29,6 @@ def reckon(company, period):
     number_of_employees = len(set(t.credit_to.id for t in tlist))
     wages = sum(t.amount for t in tlist)
 
-    filing = Filing(period)
     p = filing.new_page(1)
 
     p.ein = company.ein
