@@ -8,10 +8,12 @@
 /* http://paulirish.com/2012/box-sizing-border-box-ftw/ */
 * { box-sizing: border-box }
 
+$red: hsl(11, 93, 50);
 $orange: hsl(32, 90, 50);
 $yellow: hsl(47, 87, 50);
 $green: hsl(62, 60, 50);
 
+$redbg: lighten(desaturate($red, 10), 45);
 $orangebg: lighten(desaturate($orange, 10), 45);
 $yellowbg: lighten(desaturate($yellow, 10), 45);
 $greenbg: lighten(desaturate($green, 10), 45);
@@ -116,6 +118,10 @@ hgroup {
         &:hover {
             background-color: $brilliant;
             @include tipshadow;
+        }
+        &.drat {
+            border-color: $red;
+            background-color: $redbg;
         }
         &.good {
             border-color: $green;

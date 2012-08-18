@@ -18,7 +18,7 @@ class Filing(object):
         self.form.tally(company, self)
 
         # TODO: make this more interesting
-        self.state = 'warn' if company.today < self.due_date else 'good'
+        # self.state = 'warn' if company.today < self.due_date else 'good'
 
     def new_page(self, number):
         """Constructor called by tally functions to insert a new page."""

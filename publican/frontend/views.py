@@ -22,6 +22,16 @@ def index(request):
         for period in form.periods(company):
             filing = Filing(form, period)
             filing.tally(company)
+            filing.real_filings = list(company.filings(
+                form=form,
+                period=period,
+                ))
+            print filing.real_filings
+            filing.state = (
+                'good' if filing.real_filings else
+                'warn' if filing.due_date > company.today else
+                'drat'
+                )
             display_month = _display_month(filing)
             filings_by_month[display_month].append(filing)
 

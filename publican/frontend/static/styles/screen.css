@@ -594,6 +594,10 @@ hgroup h1 {
   -moz-box-shadow: 0 1px 7px black;
   box-shadow: 0 1px 7px black;
 }
+.main-timeline a.drat {
+  border-color: #f63409;
+  background-color: #fdece8;
+}
 .main-timeline a.good {
   border-color: #c7cc33;
   background-color: #f8f9ec;
