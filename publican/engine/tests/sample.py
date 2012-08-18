@@ -43,7 +43,7 @@ T = Transaction
 class Company(object):
     ein = '38-0218963'
     name = 'Crazy R Software'
-    incorporation_date = datetime(2011, 4, 1)
+    incorporation_date = datetime(2011, 8, 1)
     now = datetime(2012, 8, 20)
 
     business = Account('business')

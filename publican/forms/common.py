@@ -8,7 +8,8 @@ def cents(n):
 
 
 class Filing(object):
-    def __init__(self):
+    def __init__(self, period):
+        self.period = period
         self.pages = []
 
     def new_page(self, number):

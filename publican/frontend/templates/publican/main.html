@@ -2,4 +2,9 @@
 
 {% block body %}
 <div>Welcome!</div>
+
+{% for filing in filings %}
+<p>{{ filing.period }}</p>
+{% endfor %}
+
 {% endblock %}

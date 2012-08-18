@@ -21,7 +21,7 @@ def reckon(company, period):
     number_of_employees = len(set(t.credit_to.id for t in tlist))
     wages = sum(t.amount for t in tlist)
 
-    filing = Filing()
+    filing = Filing(period)
     p = filing.new_page(1)
 
     p.ein = company.ein

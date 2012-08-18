@@ -12,11 +12,13 @@ class Quarter(Period):
     def __init__(self, year, number):
         self.year = year
         self.number = number
-        self.name = '{}-Q{}'.format(year, number)
 
         month = number * 3
         self.start = datetime(year, month - 2, 1)
         self.end = datetime(year, month, mdays[month])
+
+    def __unicode__(self):
+        return u'{}-Q{}'.format(self.year, self.number)
 
     def next(self):
         if self.number == 4:
