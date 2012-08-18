@@ -1,3 +1,5 @@
+from calendar import mdays
+from datetime import datetime, timedelta
 from decimal import Decimal
 
 from publican.engine.time import quarters_range
@@ -38,7 +40,7 @@ def reckon(company, period):
 
     p.line1 = number_of_employees
     p.line2 = wages
-    p.line3 = cents(wages * _arbitrary)            # TODO
+    p.line3 = cents(wages * _arbitrary)           # TODO
 
     p.line5a1 = wages                             # TODO
     p.line5b1 = 0                                 # TODO
@@ -59,6 +61,13 @@ def reckon(company, period):
 
     # TODO: page 2
 
-    filing.due = p.line14
+    filing.balance_due = p.line14
+
+    y = period.end.year
+    m = period.end.month
+    y, m = (y + 1, 1) if m == 12 else (y, m + 1)
+    filing.due_date = datetime(y, m, mdays[m])
+    while filing.due_date.weekday() > 4:
+        filing.due_date += timedelta(days=1)
 
     return filing

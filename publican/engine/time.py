@@ -15,7 +15,7 @@ class Quarter(Period):
 
         month = number * 3
         self.start = datetime(year, month - 2, 1)
-        self.end = datetime(year, month, mdays[month])
+        self.end = datetime(year, month, mdays[month])  # works: month != Feb
 
     def __unicode__(self):
         return u'{}-Q{}'.format(self.year, self.number)

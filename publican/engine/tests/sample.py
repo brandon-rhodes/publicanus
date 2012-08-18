@@ -52,8 +52,8 @@ class Company(object):
     carol = Account('consultant')
 
     _transactions = [
-        T(datetime(2011, 11, 29), business, alice, Decimal(10)),
-        T(datetime(2011, 12, 29), business, alice, Decimal(10)),
+        T(datetime(2011, 11, 29), business, alice, Decimal(1400)),
+        T(datetime(2011, 12, 29), business, alice, Decimal(2200)),
 
         T(datetime(2012, 1, 29), business, alice, Decimal(2200)),
         T(datetime(2012, 1, 29), business, bob, Decimal(900)),
@@ -62,7 +62,7 @@ class Company(object):
         T(datetime(2012, 2, 29), business, alice, Decimal(2200)),
         T(datetime(2012, 3, 29), business, alice, Decimal(2200)),
 
-        T(datetime(2012, 4, 29), business, alice, Decimal(10)),
+        T(datetime(2012, 4, 29), business, alice, Decimal(2200)),
        ]
 
     def transactions(self, **kw):
