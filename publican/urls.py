@@ -7,9 +7,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = patterns(
     '',
-    # Examples:
-    # url(r'^$', 'publican.views.home', name='home'),
-    # url(r'^publican/', include('publican.foo.urls')),
+    url(r'^$', include('publican.frontend.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
