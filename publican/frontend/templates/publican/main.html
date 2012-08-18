@@ -9,7 +9,10 @@
     <th>{{ display_month|date:"Y-M" }}</th>
     <td>
       {% for filing in filings %}
-      {{ filing.form.name }} {{ form.title }} {{ filing.due_date }} $ {{ filing.balance_due }}
+      <span data-title="{{ filing.form.title }}"
+            data-date="{{ filing.due_date }}"
+            data-balance="{{ filing.balance_due }}"
+            >{{ filing.form.name }}</span>
       {% endfor %}
     </td>
     <td class="total">
