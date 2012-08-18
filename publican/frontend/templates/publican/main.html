@@ -11,7 +11,7 @@
     <td>{{ row.month|date:"Y M" }}</td>
     <td>
       {% for filing in row.filings %}
-      <span class="tipped">
+      <span class="filing tipped">
         <a class="tipped" href="{{ filing|href }}">{{ filing.form.name }}</a>
         <span>
           <span class="title">{{ filing.form.title }}</span>

@@ -21,6 +21,10 @@ $formborder: $yellow;
 $formbg: $yellowbg;
 $font: Arial, sans-serif;
 
+@mixin tipshadow {
+    @include single-box-shadow(#000, 0, 1px, 7px);
+};
+
 /* Property order follows the standard explained in:
    http://rhodesmill.org/brandon/2011/concentric-css/ */
 
@@ -30,7 +34,7 @@ body {
     text-align: center;
     font-family: $font;
     font-size: 18px / 16px * 100%;
-    line-height: 24px / 18px * 1em;
+    line-height: 1.4;
 }
 body > div {
     margin-left: auto;
@@ -55,22 +59,26 @@ body > table {
 .timeline {
     margin: 2em auto;
     th, td {
-        padding: 0 .8em;
+        padding: .1em .8em;
     }
     th:first-child { text-align: left; }
     th:last-child { text-align: right; }
     td { text-align: left; }
     td:nth-child(3) { text-align: right; }
 
-    a {
+    span.filing {
+        display: inline-block;
         border: 1px solid $formborder;
-        @include border-radius(.5em, .5em);
+        @include border-radius(.3em, .3em);
         background-color: $formbg;
         padding: 0 .4em;
-        color: $black;
-        text-decoration: none;
+        a {
+            color: $black;
+            text-decoration: none;
+        }
         &:hover {
             background-color: $brilliant;
+            @include tipshadow;
         }
     }
 
@@ -104,9 +112,9 @@ body > table {
         opacity: 0;
         @include single-transition(opacity, 0.1s, linear);
         position: absolute;
-        bottom: 120%;
+        bottom: 130%;
         @include border-radius(.5em, .5em);
-        @include single-box-shadow(#000, 0, 1px, 7px);
+        @include tipshadow;
         background-color: $brilliant;
     }
     &:hover > :last-child {

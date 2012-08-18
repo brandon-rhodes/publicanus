@@ -487,7 +487,7 @@ body {
   text-align: center;
   font-family: Arial, sans-serif;
   font-size: 112.5%;
-  line-height: 1.33333em;
+  line-height: 1.4;
 }
 
 body > div {
@@ -514,7 +514,7 @@ body > table {
   /* Tooltip shows a tax-form summary. */
 }
 .timeline th, .timeline td {
-  padding: 0 .8em;
+  padding: .1em .8em;
 }
 .timeline th:first-child {
   text-align: left;
@@ -528,18 +528,24 @@ body > table {
 .timeline td:nth-child(3) {
   text-align: right;
 }
-.timeline a {
+.timeline span.filing {
+  display: inline-block;
   border: 1px solid #eebe11;
-  -webkit-border-radius: 0.5em 0.5em;
-  -moz-border-radius: 0.5em / 0.5em;
-  border-radius: 0.5em / 0.5em;
+  -webkit-border-radius: 0.3em 0.3em;
+  -moz-border-radius: 0.3em / 0.3em;
+  border-radius: 0.3em / 0.3em;
   background-color: #fcf8e8;
   padding: 0 .4em;
+}
+.timeline span.filing a {
   color: #332a19;
   text-decoration: none;
 }
-.timeline a:hover {
+.timeline span.filing:hover {
   background-color: white;
+  -webkit-box-shadow: 0 1px 7px black;
+  -moz-box-shadow: 0 1px 7px black;
+  box-shadow: 0 1px 7px black;
 }
 .timeline .tipped > :last-child {
   left: -8.4em;
@@ -571,7 +577,7 @@ body > table {
   -o-transition: opacity 0.1s linear;
   transition: opacity 0.1s linear;
   position: absolute;
-  bottom: 120%;
+  bottom: 130%;
   -webkit-border-radius: 0.5em 0.5em;
   -moz-border-radius: 0.5em / 0.5em;
   border-radius: 0.5em / 0.5em;
