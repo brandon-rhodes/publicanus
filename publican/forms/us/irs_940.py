@@ -1,7 +1,7 @@
 from decimal import Decimal
 from itertools import groupby
 
-from publican.engine.kit import Date, years_range, zero
+from publican.engine.kit import Date, cents, years_range, zero
 
 name = u"940"
 title = u"Employer's Annual Federal Unemployment (FUTA) Tax Return"
@@ -44,8 +44,8 @@ def tally(company, filing):
     p.line7b = _sevenk  # TODO
     p.line7d = zero     # TODO
 
-    p.line7c = p.line7b * _eighthpercent
-    p.line7e = p.line7d * _sixthpercent
+    p.line7c = cents(p.line7b * _eighthpercent)
+    p.line7e = cents(p.line7d * _sixthpercent)
 
     p.line8 = p.line7c + p.line7e
     p.line11 = zero     # TODO
