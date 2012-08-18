@@ -67,8 +67,12 @@ def _display_month(filing):
     return (filing.due_date - Interval(days=5)).replace(day=1)
 
 def generate_grid(filing):
-    """Convert a `grid` string into a table structure."""
+    """Convert a form's `grid` string into a table structure.
 
+    This logic is tightly coupled with the for loops that it feeds,
+    which live inside of the template that renders the filing page.
+
+    """
     def generate_row(page, line):
         for spec in line.split():
             attr = spec.strip('-')

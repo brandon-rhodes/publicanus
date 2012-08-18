@@ -582,24 +582,14 @@ hgroup h1 {
    particular date. */
 .filing-table th {
   text-align: right;
-  padding: 0 .3em 0 1em;
+  padding: 0 .5em 0 1.5em;
 }
 .filing-table td {
   position: relative;
-  border: 5px solid #fcfbf8;
+  border: 1px solid #332a19;
   background-color: white;
   text-align: left;
-  padding: 1px .3em;
-}
-.filing-table td:before {
-  position: absolute;
-  top: -1px;
-  left: -1px;
-  content: ' ';
-  display: block;
-  height: 100%;
-  width: 100%;
-  border: 1px solid black;
+  padding: 0 .3em;
 }
 .filing-table td.numeric {
   text-align: right;
