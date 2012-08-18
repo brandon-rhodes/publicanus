@@ -49,7 +49,7 @@ def filing(request, region, name, period_name):
     return render_to_response('publican/filing.html', {
         'filing': filing,
         'form': form,
-        'grid': form.grid,
+        'grid': generate_grid(filing),
         })
 
 # Helpful functions.
@@ -65,3 +65,22 @@ def _display_month(filing):
 
     """
     return (filing.due_date - Interval(days=5)).replace(day=1)
+
+def generate_grid(filing):
+    """Convert a `grid` string into a table structure."""
+
+    def generate_row(page, line):
+        for word in line.split():
+            word = word.strip('-') #TODO
+            if word == 'x':
+                yield u''
+                continue
+            print repr( getattr(page, word, u'?'))
+            yield getattr(page, word, u'?')
+
+    for page in filing.pages:
+        grid = filing.form.grids[page.number]
+        for line in grid.splitlines():
+            if not line.strip():
+                continue
+            yield generate_row(page, line)

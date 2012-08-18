@@ -3,13 +3,12 @@ from itertools import groupby
 
 from publican.engine.kit import Date, cents, years_range, zero
 
-name = u"940"
-title = u"Employer's Annual Federal Unemployment (FUTA) Tax Return"
-
-
 _sevenk = Decimal('7000.00')
 _eighthpercent = Decimal('.008')
 _sixthpercent = Decimal('.006')
+
+name = u"940"
+title = u"Employer's Annual Federal Unemployment (FUTA) Tax Return"
 
 
 def periods(company):

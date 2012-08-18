@@ -1,10 +1,13 @@
 """Template tags for Publican."""
 
 import sys
+from decimal import Decimal
+
 from django import template
 from django.core.urlresolvers import reverse
 
 register = template.Library()
+
 
 @register.filter
 def href(obj):
@@ -26,3 +29,9 @@ def href(obj):
         raise ValueError('cannot build a URL for {}.{} objects'.format(
                 type(obj).__module__, type(obj).__name__))
 
+
+@register.filter
+def is_decimal(obj):
+    """Decide whether the object is a Decimal value."""
+
+    return isinstance(obj, Decimal)

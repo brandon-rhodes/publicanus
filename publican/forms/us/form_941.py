@@ -7,9 +7,25 @@ _arbitrary = Decimal('0.1195')
 _point104 = Decimal('.104')
 _point029 = Decimal('.029')
 
-
 name = u"941"
 title = u"Employer's QUARTERLY Federal Tax Return"
+grids = {
+ 1: """
+  ein--
+  name--
+  x x line1
+  x x line2
+  x x line3
+  line5a1 line5a2
+  line5b1 line5b2
+  line5c1 line5c2
+  x x line5d
+  x x line5e
+  x x line6e
+  x x line10
+  x x line14
+  """,
+ }
 
 
 def periods(company):
@@ -26,7 +42,7 @@ def tally(company, filing):
         credit_type='employee',
         ))
     number_of_employees = len(set(t.credit_to.id for t in tlist))
-    wages = sum(t.amount for t in tlist)
+    wages = sum(t.amount for t in tlist) or zero  # "or zero" keeps it Decimal
 
     p = filing.new_page(1)
 
@@ -43,7 +59,7 @@ def tally(company, filing):
     p.line3 = cents(wages * _arbitrary)           # TODO
 
     p.line5a1 = wages                             # TODO
-    p.line5b1 = 0                                 # TODO
+    p.line5b1 = zero                              # TODO
     p.line5c1 = wages                             # TODO
 
     p.line5a2 = cents(p.line5a1 * _point104)

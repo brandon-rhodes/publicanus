@@ -501,6 +501,19 @@ body > table {
   margin-right: auto;
 }
 
+h1 {
+  font-family: "Open Sans Condensed", Arial, sans-serif;
+}
+
+hgroup {
+  font-family: "Open Sans Condensed", Arial, sans-serif;
+}
+hgroup h1 {
+  margin: .4em 0;
+  font-size: 3em;
+  line-height: 1;
+}
+
 /* Universal styles all have hyphens in their name. */
 .action-nudge {
   font-family: Georgia, serif;
@@ -509,26 +522,26 @@ body > table {
 }
 
 /* The timeline is the large table on the main page. */
-.timeline {
+.main-timeline {
   margin: 2em auto;
   /* Tooltip shows a tax-form summary. */
 }
-.timeline th, .timeline td {
+.main-timeline th, .main-timeline td {
   padding: 1px .8em;
 }
-.timeline th:first-child {
+.main-timeline th:first-child {
   text-align: left;
 }
-.timeline th:last-child {
+.main-timeline th:last-child {
   text-align: right;
 }
-.timeline td {
+.main-timeline td {
   text-align: left;
 }
-.timeline td:nth-child(3) {
+.main-timeline td:nth-child(3) {
   text-align: right;
 }
-.timeline a {
+.main-timeline a {
   display: inline-block;
   border: 1px solid #eebe11;
   -webkit-border-radius: 0.3em 0.3em;
@@ -540,28 +553,34 @@ body > table {
   line-height: 1.2;
   text-decoration: none;
 }
-.timeline a:hover {
+.main-timeline a:hover {
   background-color: white;
   -webkit-box-shadow: 0 1px 7px black;
   -moz-box-shadow: 0 1px 7px black;
   box-shadow: 0 1px 7px black;
 }
-.timeline .tipped > :last-child {
+.main-timeline .tipped > :last-child {
   left: -8.4em;
   width: 20em;
   text-align: center;
   font-family: "Open Sans Condensed", Arial, sans-serif;
 }
-.timeline .tipped > :last-child span {
+.main-timeline .tipped > :last-child span {
   display: block;
 }
-.timeline .tipped > :last-child .title {
+.main-timeline .tipped > :last-child .title {
   margin: 0;
   font-size: 1em;
   /* Tooltip has very little room for long tax form titles. */
 }
-.timeline .tipped > :last-child .action-help {
+.main-timeline .tipped > :last-child .action-help {
   font-family: Arial, sans-serif;
+}
+
+/* This table displays the values in a particular form as filed on a
+   particular date. */
+.filing-table .numeric {
+  text-align: right;
 }
 
 /* A tooltip is the final element inside a <div class="tipped"> */

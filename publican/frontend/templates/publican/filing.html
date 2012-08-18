@@ -2,6 +2,19 @@
 {% load publican %}
 
 {% block body %}
-<h1>{{ form.name }}:<br>{{ filing.form.title }}</h1>
+<hgroup>
+  <h1>{{ form.name }}</h1>
+  <h2>{{ filing.form.title }}</h2>
+</hgroup>
+
+<table class="filing-table">
+  {% for row in grid %}
+  <tr>
+    {% for item in row %}
+    <td{% if item|is_decimal %} class="numeric"{% endif %}>{{ item }}</td>
+    {% endfor %}
+  </tr>
+  {% endfor %}
+</table>
 
 {% endblock %}

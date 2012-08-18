@@ -19,7 +19,9 @@ $white: #fdfdfb;
 $brilliant: #fff;
 $formedge: $yellow;
 $formbg: $yellowbg;
+
 $font: Arial, sans-serif;
+$condensed: 'Open Sans Condensed', $font;
 
 @mixin tipshadow {
     @include single-box-shadow(#000, 0, 1px, 7px);
@@ -45,6 +47,17 @@ body > table {
     margin-left: auto;
     margin-right: auto;
 }
+h1 {
+    font-family: $condensed;
+}
+hgroup {
+    font-family: $condensed;
+    h1 {
+        margin: .4em 0;
+        font-size: 3em;
+        line-height: 1;
+    }
+}
 
 /* Universal styles all have hyphens in their name. */
 
@@ -56,7 +69,7 @@ body > table {
 
 /* The timeline is the large table on the main page. */
 
-.timeline {
+.main-timeline {
     margin: 2em auto;
     th, td {
         padding: 1px .8em;
@@ -87,7 +100,7 @@ body > table {
         left: -8.4em;
         width: 20em;
         text-align: center;
-        font-family: 'Open Sans Condensed', $font;
+        font-family: $condensed;
         span {
             display: block;
         }
@@ -99,6 +112,15 @@ body > table {
         .action-help {
             font-family: $font;
         }
+    }
+}
+
+/* This table displays the values in a particular form as filed on a
+   particular date. */
+
+.filing-table {
+    .numeric {
+        text-align: right;
     }
 }
 
