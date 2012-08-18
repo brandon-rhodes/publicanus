@@ -3,7 +3,7 @@ from collections import defaultdict
 from django.http import Http404
 from django.shortcuts import render_to_response
 
-from publican.engine.kit import Interval, Month, cents, get_period
+from publican.engine.kit import Interval, Month, dollars, cents, get_period
 from publican.engine.tests.sample import company
 from publican.forms import registry
 from publican.forms.common import Filing
@@ -15,6 +15,7 @@ class Row(object):
 
 def index(request):
 
+    transactions = company.transactions
     filings_by_month = defaultdict(list)
 
     for form in sorted(registry.all_forms(), key=lambda f: f.name):
@@ -36,12 +37,12 @@ def index(request):
         row = Row()
         row.date = date
         row.is_now = (date == now_month)
-        row.employee_cost = cents(sum(t.amount for t in company.transactions(
+        row.employee_cost = dollars(sum(t.amount for t in transactions(
             within=month,
             debit_type='business',
             credit_type='employee',
             )))
-        row.consultant_cost = cents(sum(t.amount for t in company.transactions(
+        row.consultant_cost = dollars(sum(t.amount for t in transactions(
             within=month,
             debit_type='business',
             credit_type='consultant',

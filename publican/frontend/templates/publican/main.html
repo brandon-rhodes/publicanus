@@ -16,8 +16,8 @@
     <td>
       {{ row.date|date:"M" }}
     </td>
-    <td>{% if row.employee_cost %}${{ row.employee_cost }}{% endif %}</td>
-    <td>{% if row.consultant_cost %}${{ row.consultant_cost }}{% endif %}</td>
+    <td>{% if row.employee_cost %}$ {{ row.employee_cost }}{% endif %}</td>
+    <td>{% if row.consultant_cost %}$ {{ row.consultant_cost }}{% endif %}</td>
     <td>
       {% for filing in row.filings %}
       <span class="filing tipped">
@@ -26,7 +26,7 @@
         <span>
           <span class="title">{{ filing.form.title }}</span>
           {% if filing.balance_due %}
-          $<b>{{ filing.balance_due }}</b>  due on
+          $ <b>{{ filing.balance_due }}</b>  due on
           {% else %}
           Due
           {% endif %}
@@ -36,11 +36,9 @@
       </span>
       {% endfor %}
     </td>
-    {% if row.total_due %}
     <td class="total">
-      $ {{ row.total_due }}
+      {% if row.total_due %}$ {{ row.total_due }}{% endif %}
     </td>
-    {% endif %}
   </tr>
 {% endfor %}
 </table>
