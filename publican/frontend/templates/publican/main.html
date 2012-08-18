@@ -4,20 +4,23 @@
 <div>Welcome!</div>
 
 <table>
-  {% for display_month, filings, total in seq %}
+  <tr><th>Month<th>Forms<th>Due</tr>
+  {% for row in rows  %}
   <tr>
-    <th>{{ display_month|date:"Y-M" }}</th>
+    <th>{{ row.month|date:"Y-M" }}</th>
     <td>
-      {% for filing in filings %}
+      {% for filing in row.filings %}
       <span data-title="{{ filing.form.title }}"
             data-date="{{ filing.due_date }}"
             data-balance="{{ filing.balance_due }}"
             >{{ filing.form.name }}</span>
       {% endfor %}
     </td>
+    {% if row.total_due %}
     <td class="total">
-      $ {{ total }}
+      $ {{ row.total_due }}
     </td>
+    {% endif %}
   </tr>
 {% endfor %}
 </table>
