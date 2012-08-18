@@ -482,7 +482,7 @@ table {
 /* Property order follows the standard explained in:
    http://rhodesmill.org/brandon/2011/concentric-css/ */
 body {
-  background-color: #f8f8f8;
+  background-color: ivory;
   text-align: center;
   font-size: 112.5%;
 }
@@ -491,4 +491,34 @@ body > div {
   margin-left: auto;
   margin-right: auto;
   max-width: 40em;
+}
+
+body > table {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.timeline td:nth-child(3) {
+  text-align: right;
+}
+
+/* Tooltips are the final element inside a <div class="tipped"> */
+.tipped {
+  position: relative;
+}
+.tipped > :last-child {
+  display: none;
+  position: absolute;
+  bottom: 100%;
+  background-color: white;
+}
+.tipped:hover > :last-child {
+  display: block;
+}
+.tipped > :last-child:hover {
+  display: none;
+  color: red;
+}
+.tipped :last-child:hover {
+  color: red;
 }

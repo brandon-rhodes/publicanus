@@ -5,7 +5,7 @@
 /* http://paulirish.com/2012/box-sizing-border-box-ftw/ */
 * { box-sizing: border-box }
 
-$white: #f8f8f8;
+$white: #fffff0;
 $brilliant: #fff;
 
 /* Property order follows the standard explained in:
@@ -20,4 +20,35 @@ body > div {
     margin-left: auto;
     margin-right: auto;
     max-width: 40em;
+}
+body > table {
+    margin-left: auto;
+    margin-right: auto;
+}
+.timeline {
+    td:nth-child(3) {
+        text-align: right;
+    }
+}
+
+/* Tooltips are the final element inside a <div class="tipped"> */
+
+.tipped {
+    position: relative;
+    & > :last-child {
+        display: none;
+        position: absolute;
+        bottom: 100%;
+        background-color: $brilliant;
+    }
+    &:hover > :last-child {
+        display: block;
+    }
+    & > :last-child:hover {
+        display: none;
+        color: red;
+    }
+    :last-child:hover {
+        color: red;
+    }
 }

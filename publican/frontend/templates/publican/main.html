@@ -3,17 +3,20 @@
 {% block body %}
 <div>Welcome!</div>
 
-<table>
+<table class="timeline">
   <tr><th>Month<th>Forms<th>Due</tr>
   {% for row in rows  %}
   <tr>
     <th>{{ row.month|date:"Y-M" }}</th>
     <td>
       {% for filing in row.filings %}
-      <span data-title="{{ filing.form.title }}"
-            data-date="{{ filing.due_date }}"
-            data-balance="{{ filing.balance_due }}"
-            >{{ filing.form.name }}</span>
+      <div class="tipped">
+        {{ filing.form.name }}
+        <div>
+          {{ filing.form.title }}<br>
+          Due: {{ filing.balance_due }} on {{ filing.due_date }}
+        </div>
+      </div>
       {% endfor %}
     </td>
     {% if row.total_due %}
