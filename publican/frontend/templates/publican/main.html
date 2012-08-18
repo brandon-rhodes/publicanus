@@ -10,13 +10,19 @@
     <th>{{ row.month|date:"Y-M" }}</th>
     <td>
       {% for filing in row.filings %}
-      <div class="tipped">
+      <span class="tipped">
         {{ filing.form.name }}
-        <div>
-          {{ filing.form.title }}<br>
-          Due: {{ filing.balance_due }} on {{ filing.due_date }}
-        </div>
-      </div>
+        <span>
+          <span class="title">{{ filing.form.title }}</span>
+          {% if filing.balance_due %}
+          $<b>{{ filing.balance_due }}</b>  due on
+          {% else %}
+          Due
+          {% endif %}
+           <b>{{ filing.due_date|date:"M d" }}</b>
+          <span class="action-help">Click to open</span>
+        </span>
+      </span>
       {% endfor %}
     </td>
     {% if row.total_due %}

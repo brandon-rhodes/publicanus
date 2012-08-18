@@ -484,7 +484,9 @@ table {
 body {
   background-color: ivory;
   text-align: center;
+  font-family: Arial, sans-serif;
   font-size: 112.5%;
+  line-height: 1.33333em;
 }
 
 body > div {
@@ -498,23 +500,63 @@ body > table {
   margin-right: auto;
 }
 
+/* Universal styles all have hyphens in their name. */
+.action-help {
+  font-family: Georgia, serif;
+  font-size: 0.66667em;
+  font-style: italic;
+}
+
+/* These stanzas all control big complex areas of the document. */
+.timeline {
+  /* Tooltip shows a tax-form summary. */
+}
 .timeline td:nth-child(3) {
   text-align: right;
 }
+.timeline .tipped > :last-child {
+  left: -8.4em;
+  width: 20em;
+  font-family: "Open Sans Condensed", Arial, sans-serif;
+}
+.timeline .tipped > :last-child span {
+  display: block;
+}
+.timeline .tipped > :last-child .title {
+  margin: 0;
+  font-size: 1em;
+  /* Tooltip has very little room for long tax form titles. */
+}
+.timeline .tipped > :last-child .action-help {
+  font-family: Arial, sans-serif;
+}
 
-/* Tooltips are the final element inside a <div class="tipped"> */
+/* A tooltip is the final element inside a <div class="tipped"> */
 .tipped {
   position: relative;
 }
 .tipped > :last-child {
   visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity 0.1s linear;
+  -moz-transition: opacity 0.1s linear;
+  -o-transition: opacity 0.1s linear;
+  transition: opacity 0.1s linear;
   position: absolute;
-  bottom: 100%;
+  bottom: 120%;
+  -webkit-border-radius: 0.5em 0.5em;
+  -moz-border-radius: 0.5em / 0.5em;
+  border-radius: 0.5em / 0.5em;
+  -webkit-box-shadow: 0 1px 7px black;
+  -moz-box-shadow: 0 1px 7px black;
+  box-shadow: 0 1px 7px black;
   background-color: white;
 }
 .tipped:hover > :last-child {
   visibility: visible;
+  opacity: 1;
 }
 .tipped > :last-child:hover {
   visibility: hidden;
+  opacity: 0;
 }

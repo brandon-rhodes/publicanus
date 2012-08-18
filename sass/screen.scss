@@ -1,4 +1,7 @@
 @import "_normalize";
+@import "compass/css3/border-radius";
+@import "compass/css3/box-shadow";
+@import "compass/css3/transition";
 
 /* ==================== Publican styles ==================== */
 
@@ -7,6 +10,7 @@
 
 $white: #fffff0;
 $brilliant: #fff;
+$font: Arial, sans-serif;
 
 /* Property order follows the standard explained in:
    http://rhodesmill.org/brandon/2011/concentric-css/ */
@@ -14,7 +18,9 @@ $brilliant: #fff;
 body {
     background-color: $white;
     text-align: center;
+    font-family: $font;
     font-size: 18px / 16px * 100%;
+    line-height: 24px / 18px * 1em;
 }
 body > div {
     margin-left: auto;
@@ -25,22 +31,60 @@ body > table {
     margin-left: auto;
     margin-right: auto;
 }
+
+/* Universal styles all have hyphens in their name. */
+
+.action-help {
+    font-family: Georgia, serif;
+    font-size: 12px / 18px * 1em;
+    font-style: italic;
+}
+
+/* These stanzas all control big complex areas of the document. */
+
 .timeline {
     td:nth-child(3) {
         text-align: right;
     }
+    /* Tooltip shows a tax-form summary. */
+    .tipped > :last-child {
+        left: -8.4em;
+        width: 20em;
+        font-family: 'Open Sans Condensed', $font;
+        span {
+            display: block;
+        }
+        .title {
+            margin: 0;
+            font-size: 1em;
+            /* Tooltip has very little room for long tax form titles. */
+        }
+        .action-help {
+            font-family: $font;
+        }
+    }
 }
 
-/* Tooltips are the final element inside a <div class="tipped"> */
+/* A tooltip is the final element inside a <div class="tipped"> */
 
 .tipped {
     position: relative;
     & > :last-child {
         visibility: hidden;
+        opacity: 0;
+        @include single-transition(opacity, 0.1s, linear);
         position: absolute;
-        bottom: 100%;
+        bottom: 120%;
+        @include border-radius(.5em, .5em);
+        @include single-box-shadow(#000, 0, 1px, 7px);
         background-color: $brilliant;
     }
-    &:hover > :last-child { visibility: visible; }
-    & > :last-child:hover { visibility: hidden; }
+    &:hover > :last-child {
+        visibility: visible;
+        opacity: 1;
+    }
+    & > :last-child:hover {
+        visibility: hidden;
+        opacity: 0;
+    }
 }
