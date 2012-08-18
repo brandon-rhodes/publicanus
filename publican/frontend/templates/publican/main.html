@@ -1,11 +1,13 @@
 {% extends "publican/_design.html" %}
 {% load publican %}
 
+{% block title %}Publican - Your Small Business{% endblock %}
+
 {% block body %}
 <h1>Welcome!</h1>
 
 <table class="main-timeline">
-  <tr><th><th><th>Employees<th>Consultants<th>Forms due<th>Tax</tr>
+  <tr><th><th><th>Employees<th>Consultants<th>Tax forms<th>Tax</tr>
   {% for row in rows  %}
   <tr>
     <td>

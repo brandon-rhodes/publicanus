@@ -1,6 +1,8 @@
 {% extends "publican/_design.html" %}
 {% load publican %}
 
+{% block title %}Form {{ form.name }} for {{ filing.period }}{% endblock %}
+
 {% block body %}
 <hgroup>
   <h1>{{ form.name }}</h1>
