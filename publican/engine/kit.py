@@ -1,6 +1,6 @@
 """Helpful constants, functions, and classes for use of the Publican."""
 
-from calendar import mdays
+from calendar import isleap, mdays
 from datetime import date, timedelta
 from decimal import Decimal
 
@@ -30,8 +30,10 @@ class Interval(timedelta):
 
 class Period(object):
     name = None
-    start = None
-    end = None
+
+    def __init__(self, start=None, end=None):
+        self.start = start
+        self.end = end
 
 class Year(Period):
     def __init__(self, number):
@@ -44,6 +46,14 @@ class Year(Period):
 
     def next(self):
         return Year(self.number + 1)
+
+class Month(Period):
+    def __init__(self, year, number):
+        self.year = year
+        self.number = number
+        self.start = Date(year, number, 1)
+        bump = (number == 2) and isleap(year)
+        self.end = Date(year, number, mdays[number] + bump)
 
 class Quarter(Period):
     def __init__(self, year, number):
@@ -68,22 +78,23 @@ _die = object()
 
 def get_period(name, default=_die):
     """Return the period with the given name."""
-    a = name.split('-')
+    a = str(name).split('-')
 
     if len(a) == 2:
         year = int(a[0])
         if a[1].startswith('Q'):
             number = int(a[1][1:])
             return Quarter(year, number)
-        # else:
-        #     return Month(year, int(a[1]))
+        else:
+            return Month(year, int(a[1]))
     elif len(a) == 1:
         year = int(a[0])
         return Year(year)
 
     if default is not _die:
         return default
-    return ValueError('there is no Period named {!r}'.format(name))
+
+    raise ValueError('there is no Period named {!r}'.format(name))
 
 def years_range(start, end):
     """Return the years from date `start` to `end` inclusive."""
