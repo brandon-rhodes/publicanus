@@ -1,7 +1,21 @@
 from calendar import mdays
-from datetime import date as Date, timedelta
+from datetime import date, timedelta
 
-one_day = timedelta(days=1)
+# Supercharged versions of the date and timedelta, that have the
+# additional advantage that they are capitalized and so stop getting
+# confused with my variables.  (I use "date" a lot.)
+
+class Date(date):
+    def next_business_day(self):
+        w = self.weekday()
+        if w < 6:
+            return self
+        return self + Interval(days=7 - w)
+
+class Interval(timedelta):
+    pass
+
+# Periods of time have both a beginning and an end.
 
 class Period(object):
     name = None
