@@ -1,12 +1,13 @@
 from collections import defaultdict
 from datetime import datetime
 
+from django.http import Http404
 from django.shortcuts import render_to_response
 
-from publican.engine.kit import cents
+from publican.engine.kit import cents, get_period
 from publican.engine.tests.sample import company
+from publican.forms import registry
 from publican.forms.common import Filing
-from publican.forms.registry import all_forms
 
 
 class Row(object):
@@ -22,7 +23,7 @@ def index(request):
 
     months = defaultdict(list)
 
-    for form in sorted(all_forms(), key=lambda f: f.name):
+    for form in sorted(registry.all_forms(), key=lambda f: f.name):
         for period in form.periods(company):
             filing = Filing(form, period)
             filing.tally(company)
@@ -43,6 +44,15 @@ def index(request):
         })
 
 
-def filing(request, region, name, period):
+def filing(request, region, name, period_name):
+    forms = [ f for f in registry.forms_for(region) if f.name == name ]
+    period = get_period(period_name, None)
+    if len(forms) != 1 or period is None:
+        raise Http404
+    form = forms[0]
+    filing = Filing(form, period)
+    filing.tally(company)
     return render_to_response('publican/filing.html', {
+        'filing': filing,
+        'form': form,
         })

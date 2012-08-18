@@ -62,7 +62,31 @@ class Quarter(Period):
             return Quarter(self.year + 1, 1)
         return Quarter(self.year, self.number + 1)
 
+# Routines for working with Periods.
+
+_die = object()
+
+def get_period(name, default=_die):
+    """Return the period with the given name."""
+    a = name.split('-')
+
+    if len(a) == 2:
+        year = int(a[0])
+        if a[1].startswith('Q'):
+            number = int(a[1][1:])
+            return Quarter(year, number)
+        # else:
+        #     return Month(year, int(a[1]))
+    elif len(a) == 1:
+        year = int(a[0])
+        return Year(year)
+
+    if default is not _die:
+        return default
+    return ValueError('there is no Period named {!r}'.format(name))
+
 def years_range(start, end):
+    """Return the years from date `start` to `end` inclusive."""
     number = start.year
     year = Year(number)
     yield year
@@ -71,6 +95,7 @@ def years_range(start, end):
         yield year
 
 def quarters_range(start, end):
+    """Return the quarters from date `start` to `end` inclusive."""
     year = start.year
     number = (start.month + 2) // 3
     quarter = Quarter(year, number)
