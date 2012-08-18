@@ -507,18 +507,14 @@ body > table {
   position: relative;
 }
 .tipped > :last-child {
-  display: none;
+  visibility: hidden;
   position: absolute;
   bottom: 100%;
   background-color: white;
 }
 .tipped:hover > :last-child {
-  display: block;
+  visibility: visible;
 }
 .tipped > :last-child:hover {
-  display: none;
-  color: red;
-}
-.tipped :last-child:hover {
-  color: red;
+  visibility: hidden;
 }

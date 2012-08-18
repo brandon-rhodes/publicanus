@@ -36,19 +36,11 @@ body > table {
 .tipped {
     position: relative;
     & > :last-child {
-        display: none;
+        visibility: hidden;
         position: absolute;
         bottom: 100%;
         background-color: $brilliant;
     }
-    &:hover > :last-child {
-        display: block;
-    }
-    & > :last-child:hover {
-        display: none;
-        color: red;
-    }
-    :last-child:hover {
-        color: red;
-    }
+    &:hover > :last-child { visibility: visible; }
+    & > :last-child:hover { visibility: hidden; }
 }
