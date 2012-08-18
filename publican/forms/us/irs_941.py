@@ -1,5 +1,5 @@
 from calendar import mdays
-from datetime import datetime, timedelta
+from datetime import date as Date, timedelta
 from decimal import Decimal
 
 from publican.engine.time import quarters_range
@@ -67,7 +67,7 @@ def tally(company, filing):
     y = period.end.year
     m = period.end.month
     y, m = (y + 1, 1) if m == 12 else (y, m + 1)
-    filing.due_date = datetime(y, m, mdays[m])
+    filing.due_date = Date(y, m, mdays[m])
     while filing.due_date.weekday() > 4:
         filing.due_date += timedelta(days=1)
 
