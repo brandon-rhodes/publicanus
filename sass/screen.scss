@@ -28,6 +28,8 @@ $font: Arial, sans-serif;
 $mono: Courier, mono;
 $condensed: 'Open Sans Condensed', $font;
 
+$smallnum: 16px / 18px * 1em;
+
 @mixin tipshadow {
     @include single-box-shadow(#000, 0, 1px, 7px);
 };
@@ -88,12 +90,14 @@ hgroup {
 
 .main-timeline {
     margin: 2em auto;
-    th { padding: 0 .4em .5em .4em; }
+    th { padding: 1em .5em; font-size: 12px / 16px * 1em; }
     td { padding: 0 .4em; }
     td:first-child { font-weight: bold; }
     td:nth-child(2) { text-align: left; border-right: 1px solid $black; }
-    td:nth-child(3) { text-align: left; }
-    td:nth-child(4) { text-align: right; }
+    td:nth-child(3) { text-align: right; font-size: $smallnum; }
+    td:nth-child(4) { text-align: right; font-size: $smallnum; }
+    td:nth-child(5) { text-align: left; }
+    td:nth-child(6) { text-align: right; font-size: $smallnum; }
 
     a {
         display: inline-block;

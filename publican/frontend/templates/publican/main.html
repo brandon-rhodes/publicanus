@@ -5,10 +5,9 @@
 <h1>Welcome!</h1>
 
 <table class="main-timeline">
-  <tr><th><th><th>Forms<th>Total</tr>
+  <tr><th><th><th>Employees<th>Consultants<th>Forms due<th>Tax</tr>
   {% for row in rows  %}
   <tr>
-    {% spaceless %}
     <td>
       {% if forloop.first or row.date.month == 1 %}
       {{ row.date|date:"Y" }}
@@ -17,7 +16,8 @@
     <td>
       {{ row.date|date:"M" }}
     </td>
-    {% endspaceless %}
+    <td>{% if row.employee_cost %}${{ row.employee_cost }}{% endif %}</td>
+    <td>{% if row.consultant_cost %}${{ row.consultant_cost }}{% endif %}</td>
     <td>
       {% for filing in row.filings %}
       <span class="filing tipped">

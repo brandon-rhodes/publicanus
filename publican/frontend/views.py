@@ -3,7 +3,7 @@ from collections import defaultdict
 from django.http import Http404
 from django.shortcuts import render_to_response
 
-from publican.engine.kit import Interval, cents, get_period
+from publican.engine.kit import Interval, Month, cents, get_period
 from publican.engine.tests.sample import company
 from publican.forms import registry
 from publican.forms.common import Filing
@@ -32,9 +32,20 @@ def index(request):
 
     date = start
     while date <= end:
+        month = Month(date.year, date.month)
         row = Row()
         row.date = date
         row.is_now = (date == now_month)
+        row.employee_cost = cents(sum(t.amount for t in company.transactions(
+            within=month,
+            debit_type='business',
+            credit_type='employee',
+            )))
+        row.consultant_cost = cents(sum(t.amount for t in company.transactions(
+            within=month,
+            debit_type='business',
+            credit_type='consultant',
+            )))
         row.filings = filings_by_month.get(date, ())
         row.total_due = cents(sum(f.balance_due for f in row.filings))
         rows.append(row)
