@@ -29,7 +29,8 @@ class Test941(TestCase):
     def test_periods(self):
         self.assertEqual(
             [ unicode(period) for period in form_941.periods(company) ],
-            [u'2011-Q3', u'2011-Q4', u'2012-Q1', u'2012-Q2', u'2012-Q3']
+            [u'2011-Q3', u'2011-Q4',
+             u'2012-Q1', u'2012-Q2', u'2012-Q3', u'2012-Q4']
             )
 
     def test_reckon(self):
