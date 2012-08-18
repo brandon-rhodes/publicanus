@@ -10,7 +10,7 @@ zero = Decimal('0.00')
 two_places = Decimal('1.00')
 
 def cents(n):
-    return n.quantize(two_places)
+    return n.quantize(two_places) or zero
 
 # Supercharged versions of the date and timedelta, that have the
 # additional advantage that they are capitalized and so stop getting
