@@ -7,7 +7,11 @@ from decimal import Decimal
 # Conveniences when working with decimals.
 
 zero = Decimal('0.00')
+zero_places = Decimal('1')
 two_places = Decimal('1.00')
+
+def dollars(n):
+    return (n or zero).quantize(zero_places)
 
 def cents(n):
     return (n or zero).quantize(two_places)
