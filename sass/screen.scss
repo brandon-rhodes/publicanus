@@ -8,8 +8,17 @@
 /* http://paulirish.com/2012/box-sizing-border-box-ftw/ */
 * { box-sizing: border-box }
 
-$white: #fffff0;
+$orange: hsl(30, 90, 50);
+$yellow: hsl(47, 87, 50);
+
+$orangebg: lighten(desaturate($orange, 10), 45);
+$yellowbg: lighten(desaturate($yellow, 10), 45);
+
+$black: #332a19;
+$white: #fdfdfb;
 $brilliant: #fff;
+$formborder: $yellow;
+$formbg: $yellowbg;
 $font: Arial, sans-serif;
 
 /* Property order follows the standard explained in:
@@ -17,6 +26,7 @@ $font: Arial, sans-serif;
 
 body {
     background-color: $white;
+    color: $black;
     text-align: center;
     font-family: $font;
     font-size: 18px / 16px * 100%;
@@ -34,7 +44,7 @@ body > table {
 
 /* Universal styles all have hyphens in their name. */
 
-.action-help {
+.action-nudge {
     font-family: Georgia, serif;
     font-size: 12px / 18px * 1em;
     font-style: italic;
@@ -43,13 +53,33 @@ body > table {
 /* These stanzas all control big complex areas of the document. */
 
 .timeline {
-    td:nth-child(3) {
-        text-align: right;
+    margin: 2em auto;
+    th, td {
+        padding: 0 .8em;
     }
+    th:first-child { text-align: left; }
+    th:last-child { text-align: right; }
+    td { text-align: left; }
+    td:nth-child(3) { text-align: right; }
+
+    a {
+        border: 1px solid $formborder;
+        @include border-radius(.5em, .5em);
+        background-color: $formbg;
+        padding: 0 .4em;
+        color: $black;
+        text-decoration: none;
+        &:hover {
+            background-color: $brilliant;
+        }
+    }
+
     /* Tooltip shows a tax-form summary. */
+
     .tipped > :last-child {
         left: -8.4em;
         width: 20em;
+        text-align: center;
         font-family: 'Open Sans Condensed', $font;
         span {
             display: block;

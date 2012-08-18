@@ -482,7 +482,8 @@ table {
 /* Property order follows the standard explained in:
    http://rhodesmill.org/brandon/2011/concentric-css/ */
 body {
-  background-color: ivory;
+  background-color: #fdfdfb;
+  color: #332a19;
   text-align: center;
   font-family: Arial, sans-serif;
   font-size: 112.5%;
@@ -501,7 +502,7 @@ body > table {
 }
 
 /* Universal styles all have hyphens in their name. */
-.action-help {
+.action-nudge {
   font-family: Georgia, serif;
   font-size: 0.66667em;
   font-style: italic;
@@ -509,14 +510,41 @@ body > table {
 
 /* These stanzas all control big complex areas of the document. */
 .timeline {
+  margin: 2em auto;
   /* Tooltip shows a tax-form summary. */
+}
+.timeline th, .timeline td {
+  padding: 0 .8em;
+}
+.timeline th:first-child {
+  text-align: left;
+}
+.timeline th:last-child {
+  text-align: right;
+}
+.timeline td {
+  text-align: left;
 }
 .timeline td:nth-child(3) {
   text-align: right;
 }
+.timeline a {
+  border: 1px solid #eebe11;
+  -webkit-border-radius: 0.5em 0.5em;
+  -moz-border-radius: 0.5em / 0.5em;
+  border-radius: 0.5em / 0.5em;
+  background-color: #fcf8e8;
+  padding: 0 .4em;
+  color: #332a19;
+  text-decoration: none;
+}
+.timeline a:hover {
+  background-color: white;
+}
 .timeline .tipped > :last-child {
   left: -8.4em;
   width: 20em;
+  text-align: center;
   font-family: "Open Sans Condensed", Arial, sans-serif;
 }
 .timeline .tipped > :last-child span {

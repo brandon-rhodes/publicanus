@@ -2,13 +2,13 @@
 {% load publican %}
 
 {% block body %}
-<div>Welcome!</div>
+<h1>Welcome!</h1>
 
 <table class="timeline">
-  <tr><th>Month<th>Forms<th>Due</tr>
+  <tr><th>Month<th>Forms<th>Total</tr>
   {% for row in rows  %}
   <tr>
-    <th>{{ row.month|date:"Y-M" }}</th>
+    <td>{{ row.month|date:"Y M" }}</td>
     <td>
       {% for filing in row.filings %}
       <span class="tipped">
@@ -21,7 +21,7 @@
           Due
           {% endif %}
            <b>{{ filing.due_date|date:"M d" }}</b>
-          <span class="action-help">Click to open</span>
+          <span class="action-nudge">Click to open</span>
         </span>
       </span>
       {% endfor %}
