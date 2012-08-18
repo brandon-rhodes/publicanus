@@ -16,10 +16,11 @@ $orangebg: lighten(desaturate($orange, 10), 45);
 $yellowbg: lighten(desaturate($yellow, 10), 45);
 $greenbg: lighten(desaturate($green, 10), 45);
 
+$yellowtext: darken($yellow, 21);
+
 $black: #332a19;
 $white: lighten(desaturate($yellow, 50), 48);
 $brilliant: #fff;
-$test: darken(desaturate($yellow, 50), 0);
 $formedge: $yellow;
 $formbg: $yellowbg;
 
@@ -70,6 +71,7 @@ hgroup {
     font-family: Georgia, serif;
     font-size: 12px / 18px * 1em;
     font-style: italic;
+    color: $yellowtext;
 }
 
 /* The timeline is the large table on the main page. */
@@ -108,17 +110,20 @@ hgroup {
         left: -8.4em;
         width: 20em;
         text-align: center;
+        padding-top: .4em;
+
+        /* Tooltip has little room for long tax form titles, so: condensed. */
         font-family: $condensed;
+
         span {
             display: block;
         }
         .title {
             margin: 0;
             font-size: 1em;
-            /* Tooltip has very little room for long tax form titles. */
         }
-        .action-help {
-            font-family: $font;
+        .action-nudge {
+            padding-top: .2em;
         }
     }
 }
@@ -150,9 +155,9 @@ hgroup {
     & > :last-child {
         visibility: hidden;
         opacity: 0;
-        @include single-transition(opacity, 0.1s, linear);
         position: absolute;
         bottom: 130%;
+        @include single-transition(opacity, 0.1s, linear);
         @include border-radius(.5em, .5em);
         @include tipshadow;
         background-color: $brilliant;

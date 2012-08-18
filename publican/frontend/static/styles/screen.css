@@ -520,6 +520,7 @@ hgroup h1 {
   font-family: Georgia, serif;
   font-size: 0.66667em;
   font-style: italic;
+  color: #8a6e0a;
 }
 
 /* The timeline is the large table on the main page. */
@@ -572,6 +573,8 @@ hgroup h1 {
   left: -8.4em;
   width: 20em;
   text-align: center;
+  padding-top: .4em;
+  /* Tooltip has little room for long tax form titles, so: condensed. */
   font-family: "Open Sans Condensed", Arial, sans-serif;
 }
 .main-timeline .tipped > :last-child span {
@@ -580,10 +583,9 @@ hgroup h1 {
 .main-timeline .tipped > :last-child .title {
   margin: 0;
   font-size: 1em;
-  /* Tooltip has very little room for long tax form titles. */
 }
-.main-timeline .tipped > :last-child .action-help {
-  font-family: Arial, sans-serif;
+.main-timeline .tipped > :last-child .action-nudge {
+  padding-top: .2em;
 }
 
 /* This table displays the values in a particular form as filed on a
@@ -610,12 +612,12 @@ hgroup h1 {
 .tipped > :last-child {
   visibility: hidden;
   opacity: 0;
+  position: absolute;
+  bottom: 130%;
   -webkit-transition: opacity 0.1s linear;
   -moz-transition: opacity 0.1s linear;
   -o-transition: opacity 0.1s linear;
   transition: opacity 0.1s linear;
-  position: absolute;
-  bottom: 130%;
   -webkit-border-radius: 0.5em 0.5em;
   -moz-border-radius: 0.5em / 0.5em;
   border-radius: 0.5em / 0.5em;
