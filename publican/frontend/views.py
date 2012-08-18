@@ -3,8 +3,9 @@ from itertools import groupby
 
 from django.shortcuts import render_to_response
 
+from publican.engine.kit import cents
 from publican.engine.tests.sample import company
-from publican.forms.common import Filing, cents
+from publican.forms.common import Filing
 from publican.forms.registry import all_forms
 
 def _display_month(filing):

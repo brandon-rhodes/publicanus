@@ -1,8 +1,7 @@
 from decimal import Decimal
 from itertools import groupby
 
-from publican.engine.time import Date, years_range
-from ..common import zero
+from publican.engine.kit import Date, years_range, zero
 
 name = u"940"
 title = u"Employer's Annual Federal Unemployment (FUTA) Tax Return"

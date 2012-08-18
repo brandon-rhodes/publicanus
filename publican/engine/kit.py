@@ -1,5 +1,16 @@
+"""Helpful constants, functions, and classes for use of the Publican."""
+
 from calendar import mdays
 from datetime import date, timedelta
+from decimal import Decimal
+
+# Conveniences when working with decimals.
+
+zero = Decimal('0')
+two_places = Decimal('1.00')
+
+def cents(n):
+    return n.quantize(two_places)
 
 # Supercharged versions of the date and timedelta, that have the
 # additional advantage that they are capitalized and so stop getting

@@ -1,8 +1,8 @@
 from decimal import Decimal
 from unittest import TestCase
 
+from publican.engine.kit import Quarter, Year
 from publican.engine.tests.sample import company
-from publican.engine.time import Quarter, Year
 from .. common import Filing
 from . import irs_940, irs_941
 

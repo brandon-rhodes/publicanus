@@ -1,10 +1,3 @@
-from decimal import Decimal
-
-two_places = Decimal('1.00')
-zero = Decimal('0')
-
-def cents(n):
-    return n.quantize(two_places)
 
 class Filing(object):
     def __init__(self, form, period):
