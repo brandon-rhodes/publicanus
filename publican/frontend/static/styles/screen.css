@@ -530,8 +530,8 @@ hgroup h1 {
 .main-timeline th, .main-timeline td {
   padding: 1px .8em;
 }
-.main-timeline th:first-child {
-  text-align: left;
+.main-timeline td:first-child {
+  font-weight: bold;
 }
 .main-timeline th:last-child {
   text-align: right;
@@ -539,7 +539,7 @@ hgroup h1 {
 .main-timeline td {
   text-align: left;
 }
-.main-timeline td:nth-child(3) {
+.main-timeline td:nth-child(4) {
   text-align: right;
 }
 .main-timeline a {

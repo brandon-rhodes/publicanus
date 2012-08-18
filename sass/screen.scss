@@ -75,10 +75,10 @@ hgroup {
     th, td {
         padding: 1px .8em;
     }
-    th:first-child { text-align: left; }
+    td:first-child { font-weight: bold; }
     th:last-child { text-align: right; }
     td { text-align: left; }
-    td:nth-child(3) { text-align: right; }
+    td:nth-child(4) { text-align: right; }
 
     a {
         display: inline-block;

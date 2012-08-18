@@ -3,7 +3,7 @@ from collections import defaultdict
 from django.http import Http404
 from django.shortcuts import render_to_response
 
-from publican.engine.kit import Interval, cents, get_period
+from publican.engine.kit import Date, Interval, cents, get_period, zero
 from publican.engine.tests.sample import company
 from publican.forms import registry
 from publican.forms.common import Filing
@@ -15,23 +15,31 @@ class Row(object):
 
 def index(request):
 
-    months = defaultdict(list)
+    filings_by_month = defaultdict(list)
 
     for form in sorted(registry.all_forms(), key=lambda f: f.name):
         for period in form.periods(company):
             filing = Filing(form, period)
             filing.tally(company)
             display_month = _display_month(filing)
-            months[display_month].append(filing)
+            filings_by_month[display_month].append(filing)
 
+    sorted_months = sorted(filings_by_month.iterkeys())
+    start = sorted_months[0]
+    end = sorted_months[-1]
     rows = []
 
-    for month, filings in sorted(months.iteritems()):
+    date = start
+    while date <= end:
         row = Row()
-        row.month = month
-        row.filings = filings
-        row.total_due = cents(sum(f.balance_due for f in filings))
+        row.date = date
+        row.filings = filings_by_month.get(date, ())
+        row.total_due = cents(sum(f.balance_due for f in row.filings))
         rows.append(row)
+        if date.month == 12:
+            date = date.replace(year=date.year + 1, month=1)
+        else:
+            date = date.replace(month=date.month + 1)
 
     return render_to_response('publican/main.html', {
         'rows': rows,
@@ -51,6 +59,7 @@ def filing(request, region, name, period_name):
         'form': form,
         'grid': generate_grid(filing),
         })
+
 
 # Helpful functions.
 

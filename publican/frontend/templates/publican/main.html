@@ -5,10 +5,19 @@
 <h1>Welcome!</h1>
 
 <table class="main-timeline">
-  <tr><th>Month<th>Forms<th>Total</tr>
+  <tr><th><th><th>Forms<th>Total</tr>
   {% for row in rows  %}
   <tr>
-    <td>{{ row.month|date:"Y M" }}</td>
+    {% spaceless %}
+    <td>
+      {% if forloop.first or row.date.month == 1 %}
+      {{ row.date|date:"Y" }}
+      {% endif %}
+    </td>
+    <td>
+      {{ row.date|date:"M" }}
+    </td>
+    {% endspaceless %}
     <td>
       {% for filing in row.filings %}
       <span class="filing tipped">
