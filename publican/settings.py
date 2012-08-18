@@ -121,6 +121,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'publican.api',
     'publican.engine',
+    'publican.forms',
     'publican.frontend',
 )
 
