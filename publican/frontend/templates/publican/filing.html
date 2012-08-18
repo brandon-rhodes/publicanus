@@ -11,8 +11,13 @@
   {% spaceless %}
   {% for row in grid %}
   <tr>
-    {% for datum, colspan in row %}
+    {% for name, datum, colspan in row %}
+    <th>{{ name }}</th>
+    {% if datum = '' %}
+    <th></th>
+    {% else %}
     <td{% if datum|is_decimal %} class="numeric"{% endif %}{% if colspan %} colspan="{{ colspan }}"{% endif %}>{{ datum }}</td>
+    {% endif %}
     {% endfor %}
   </tr>
   {% endfor %}

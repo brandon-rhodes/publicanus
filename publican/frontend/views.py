@@ -71,14 +71,20 @@ def generate_grid(filing):
 
     def generate_row(page, line):
         for spec in line.split():
-            word = spec.strip('-')
-            hyphens = len(spec) - len(word)
-            colspan = hyphens + 1 if hyphens else None
-            if word == 'x':
+            attr = spec.strip('-')
+            if attr.startswith('line'):
+                name = attr[4:]         # 'line5b' becomes '5b.'
+            elif attr == 'x':
+                name = ''               # use 'x' for empty grid cells
+            else:
+                name = attr.capitalize()
+            hyphens = len(spec) - len(attr)  # for 'foo--' this is 2
+            colspan = 2 * hyphens + 1 if hyphens else None
+            if attr == 'x':
                 datum = u''
             else:
-                datum = getattr(page, word, u'?')
-            yield datum, colspan
+                datum = getattr(page, attr, u'?')
+            yield name, datum, colspan
 
     for page in filing.pages:
         grid = filing.form.grids[page.number]
