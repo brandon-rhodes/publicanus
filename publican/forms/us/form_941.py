@@ -7,6 +7,7 @@ _arbitrary = Decimal('0.1195')
 _point104 = Decimal('.104')
 _point029 = Decimal('.029')
 
+region = u"us"
 name = u"941"
 title = u"Employer's QUARTERLY Federal Tax Return"
 
