@@ -26,11 +26,10 @@ def index(request):
                 form=form,
                 period=period,
                 ))
-            print filing.real_filings
             filing.state = (
-                'good' if filing.real_filings else
+                'filed' if filing.real_filings else
                 'warn' if filing.due_date > company.today else
-                'drat'
+                'late'
                 )
             display_month = _display_month(filing)
             filings_by_month[display_month].append(filing)
@@ -68,6 +67,7 @@ def index(request):
     return render_to_response('publican/main.html', {
         'rows': rows,
         'this_month': company.today.replace(day=1),
+        'today': company.today,
         })
 
 

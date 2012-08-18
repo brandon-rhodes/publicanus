@@ -594,19 +594,18 @@ hgroup h1 {
   -moz-box-shadow: 0 1px 7px black;
   box-shadow: 0 1px 7px black;
 }
-.main-timeline a.drat {
+.main-timeline a.late {
   border-color: #f63409;
   background-color: #fdece8;
 }
-.main-timeline a.good {
+.main-timeline a.filed {
   border-color: #c7cc33;
   background-color: #f8f9ec;
 }
 .main-timeline .tipped > :last-child {
   left: -8.4em;
-  width: 20em;
   text-align: center;
-  padding-top: .4em;
+  padding: .4em .8em 0 .8em;
   /* Tooltip has little room for long tax form titles, so: condensed. */
   font-family: "Open Sans Condensed", Arial, sans-serif;
 }
@@ -616,6 +615,7 @@ hgroup h1 {
 .main-timeline .tipped > :last-child .title {
   margin: 0;
   font-size: 1em;
+  white-space: nowrap;
 }
 .main-timeline .tipped > :last-child .action-nudge {
   padding-top: .2em;

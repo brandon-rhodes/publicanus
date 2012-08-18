@@ -22,6 +22,7 @@ $highlightbg: lighten(desaturate($yellow, 10), 38);
 $highlight: lighten(desaturate($yellow, 50), 45);
 
 $yellowtext: darken($yellow, 21);
+$greentext: darken($green, 21);
 
 $black: #332a19;
 $white: lighten(desaturate($yellow, 50), 48);
@@ -119,11 +120,11 @@ hgroup {
             background-color: $brilliant;
             @include tipshadow;
         }
-        &.drat {
+        &.late {
             border-color: $red;
             background-color: $redbg;
         }
-        &.good {
+        &.filed {
             border-color: $green;
             background-color: $greenbg;
         }
@@ -133,9 +134,8 @@ hgroup {
 
     .tipped > :last-child {
         left: -8.4em;
-        width: 20em;
         text-align: center;
-        padding-top: .4em;
+        padding: .4em .8em 0 .8em;
 
         /* Tooltip has little room for long tax form titles, so: condensed. */
         font-family: $condensed;
@@ -146,6 +146,7 @@ hgroup {
         .title {
             margin: 0;
             font-size: 1em;
+            white-space: nowrap;
         }
         .action-nudge {
             padding-top: .2em;
