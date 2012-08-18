@@ -1,20 +1,16 @@
 from decimal import Decimal
 
 from publican.engine.time import quarters_range
-from ..common import Filing
-
-def periods(company):
-    return list(quarters_range(company.incorporation_date, company.now))
-
-two_places = Decimal('1.00')
-zero = Decimal('0')
-
-def cents(n):
-    return n.quantize(two_places)
+from ..common import Filing, cents, zero
 
 arbitrary = Decimal('0.1195')
 point104 = Decimal('.104')
 point029 = Decimal('.029')
+
+
+def periods(company):
+    return list(quarters_range(company.incorporation_date, company.now))
+
 
 def reckon(company, period):
     tlist = list(company.transactions(
