@@ -1,6 +1,5 @@
 from collections import defaultdict
 from datetime import datetime
-from itertools import groupby
 
 from django.shortcuts import render_to_response
 
@@ -9,12 +8,15 @@ from publican.engine.tests.sample import company
 from publican.forms.common import Filing
 from publican.forms.registry import all_forms
 
+
 class Row(object):
     """Throwaway class for the table rows we build for the template."""
+
 
 def _display_month(filing):
     d = filing.due_date
     return datetime(d.year, d.month + (1 if d.day < 6 else 0), 1)
+
 
 def index(request):
 
@@ -37,5 +39,10 @@ def index(request):
         rows.append(row)
 
     return render_to_response('publican/main.html', {
-            'rows': rows,
-            })
+        'rows': rows,
+        })
+
+
+def filing(request, region, name, period):
+    return render_to_response('publican/filing.html', {
+        })
