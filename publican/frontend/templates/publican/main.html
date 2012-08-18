@@ -9,7 +9,7 @@
 <table class="main-timeline">
   <tr><th><th><th>Employees<th>Consultants<th>Tax forms<th>Tax</tr>
   {% for row in rows  %}
-  <tr>
+  <tr{% if row.date == this_month %} class="current"{% endif %}>
     <td>
       {% if forloop.first or row.date.month == 1 %}
       {{ row.date|date:"Y" }}

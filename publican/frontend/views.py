@@ -57,6 +57,7 @@ def index(request):
 
     return render_to_response('publican/main.html', {
         'rows': rows,
+        'this_month': company.today.replace(day=1),
         })
 
 
