@@ -6,7 +6,7 @@ from decimal import Decimal
 
 # Conveniences when working with decimals.
 
-zero = Decimal('0')
+zero = Decimal('0.00')
 two_places = Decimal('1.00')
 
 def cents(n):
