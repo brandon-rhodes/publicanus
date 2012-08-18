@@ -480,7 +480,10 @@ table {
 }
 
 /* Property order follows the standard explained in:
-   http://rhodesmill.org/brandon/2011/concentric-css/ */
+   http://rhodesmill.org/brandon/2011/concentric-css/
+
+   This first section styles the "big sections" of the page, and applies
+   to all pages on the site. */
 body {
   background-color: #fcfbf8;
   color: #332a19;
@@ -503,6 +506,16 @@ body > table {
 
 h1 {
   font-family: "Open Sans Condensed", Arial, sans-serif;
+}
+
+footer {
+  margin-top: 4em;
+  margin-bottom: 1em;
+  font-size: 77.77778%;
+  font-family: "Open Sans Condensed", Arial, sans-serif;
+}
+footer a {
+  color: #332a19;
 }
 
 /* The hgroup is for pages with both a heading <h1> and subheading <h2>. */

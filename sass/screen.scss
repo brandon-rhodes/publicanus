@@ -33,7 +33,10 @@ $condensed: 'Open Sans Condensed', $font;
 };
 
 /* Property order follows the standard explained in:
-   http://rhodesmill.org/brandon/2011/concentric-css/ */
+   http://rhodesmill.org/brandon/2011/concentric-css/
+
+   This first section styles the "big sections" of the page, and applies
+   to all pages on the site. */
 
 body {
     background-color: $white;
@@ -54,6 +57,13 @@ body > table {
 }
 h1 {
     font-family: $condensed;
+}
+footer {
+    margin-top: 4em;
+    margin-bottom: 1em;
+    font-size: 14px / 18px * 100%;
+    font-family: $condensed;
+    a { color: $black; }
 }
 
 /* The hgroup is for pages with both a heading <h1> and subheading <h2>. */
