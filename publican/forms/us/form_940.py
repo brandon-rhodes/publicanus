@@ -34,8 +34,8 @@ def tally(company, filing):
 
     get_employee_id = lambda t: t.credit_to.id
     tlist.sort(key=get_employee_id)
-    p.line5 = sum(max(0, sum(t.amount for t in sublist) - _sevenk)
-                  for k, sublist in groupby(tlist, get_employee_id))
+    p.line5 = cents(sum(max(0, sum(t.amount for t in sublist) - _sevenk)
+                        for k, sublist in groupby(tlist, get_employee_id)))
 
     p.line6 = p.line5
     p.line7a = p.line3 - p.line6
@@ -57,3 +57,21 @@ def tally(company, filing):
     filing.due_date = Date(period.end.year + 1, 1, 31).next_business_day()
 
     return filing
+
+
+grids = {
+ 1: """
+  ein-
+  name-
+  x x line3
+  x line5
+  x x line6
+  x x line7a
+  x line7b line7c
+  x line7d line7e
+  x x line8
+  x x line11
+  x x line12
+  x x line14
+  """,
+ }

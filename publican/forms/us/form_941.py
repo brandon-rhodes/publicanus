@@ -9,23 +9,6 @@ _point029 = Decimal('.029')
 
 name = u"941"
 title = u"Employer's QUARTERLY Federal Tax Return"
-grids = {
- 1: """
-  ein--
-  name--
-  x x line1
-  x x line2
-  x x line3
-  line5a1 line5a2
-  line5b1 line5b2
-  line5c1 line5c2
-  x x line5d
-  x x line5e
-  x x line6e
-  x x line10
-  x x line14
-  """,
- }
 
 
 def periods(company):
@@ -85,3 +68,22 @@ def tally(company, filing):
     filing.due_date = Date(y, m, mdays[m]).next_business_day()
 
     return filing
+
+
+grids = {
+ 1: """
+  ein-
+  name-
+  x x line1
+  x x line2
+  x x line3
+  line5a1 line5a2
+  line5b1 line5b2
+  line5c1 line5c2
+  x x line5d
+  x x line5e
+  x x line6e
+  x x line10
+  x x line14
+  """,
+ }
