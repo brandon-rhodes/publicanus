@@ -17,7 +17,7 @@ $yellowbg: lighten(desaturate($yellow, 10), 45);
 $black: #332a19;
 $white: #fdfdfb;
 $brilliant: #fff;
-$formborder: $yellow;
+$formedge: $yellow;
 $formbg: $yellowbg;
 $font: Arial, sans-serif;
 
@@ -54,28 +54,27 @@ body > table {
     font-style: italic;
 }
 
-/* These stanzas all control big complex areas of the document. */
+/* The timeline is the large table on the main page. */
 
 .timeline {
     margin: 2em auto;
     th, td {
-        padding: .1em .8em;
+        padding: 1px .8em;
     }
     th:first-child { text-align: left; }
     th:last-child { text-align: right; }
     td { text-align: left; }
     td:nth-child(3) { text-align: right; }
 
-    span.filing {
+    a {
         display: inline-block;
-        border: 1px solid $formborder;
+        border: 1px solid $formedge;
         @include border-radius(.3em, .3em);
         background-color: $formbg;
         padding: 0 .4em;
-        a {
-            color: $black;
-            text-decoration: none;
-        }
+        color: $black;
+        line-height: 1.2;
+        text-decoration: none;
         &:hover {
             background-color: $brilliant;
             @include tipshadow;

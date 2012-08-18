@@ -508,13 +508,13 @@ body > table {
   font-style: italic;
 }
 
-/* These stanzas all control big complex areas of the document. */
+/* The timeline is the large table on the main page. */
 .timeline {
   margin: 2em auto;
   /* Tooltip shows a tax-form summary. */
 }
 .timeline th, .timeline td {
-  padding: .1em .8em;
+  padding: 1px .8em;
 }
 .timeline th:first-child {
   text-align: left;
@@ -528,7 +528,7 @@ body > table {
 .timeline td:nth-child(3) {
   text-align: right;
 }
-.timeline span.filing {
+.timeline a {
   display: inline-block;
   border: 1px solid #eebe11;
   -webkit-border-radius: 0.3em 0.3em;
@@ -536,12 +536,11 @@ body > table {
   border-radius: 0.3em / 0.3em;
   background-color: #fcf8e8;
   padding: 0 .4em;
-}
-.timeline span.filing a {
   color: #332a19;
+  line-height: 1.2;
   text-decoration: none;
 }
-.timeline span.filing:hover {
+.timeline a:hover {
   background-color: white;
   -webkit-box-shadow: 0 1px 7px black;
   -moz-box-shadow: 0 1px 7px black;
