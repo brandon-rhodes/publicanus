@@ -8,19 +8,23 @@
 /* http://paulirish.com/2012/box-sizing-border-box-ftw/ */
 * { box-sizing: border-box }
 
-$orange: hsl(30, 90, 50);
+$orange: hsl(32, 90, 50);
 $yellow: hsl(47, 87, 50);
+$green: hsl(62, 60, 50);
 
 $orangebg: lighten(desaturate($orange, 10), 45);
 $yellowbg: lighten(desaturate($yellow, 10), 45);
+$greenbg: lighten(desaturate($green, 10), 45);
 
 $black: #332a19;
 $white: lighten(desaturate($yellow, 50), 48);
 $brilliant: #fff;
+$test: darken(desaturate($yellow, 50), 0);
 $formedge: $yellow;
 $formbg: $yellowbg;
 
 $font: Arial, sans-serif;
+$mono: Courier, mono;
 $condensed: 'Open Sans Condensed', $font;
 
 @mixin tipshadow {
@@ -72,12 +76,11 @@ hgroup {
 
 .main-timeline {
     margin: 2em auto;
-    th, td {
-        padding: 1px .8em;
-    }
+    th { padding: 0 .4em .5em .4em; }
+    td { padding: 0 .4em; }
     td:first-child { font-weight: bold; }
-    th:last-child { text-align: right; }
-    td { text-align: left; }
+    td:nth-child(2) { text-align: left; border-right: 1px solid $black; }
+    td:nth-child(3) { text-align: left; }
     td:nth-child(4) { text-align: right; }
 
     a {
@@ -92,6 +95,10 @@ hgroup {
         &:hover {
             background-color: $brilliant;
             @include tipshadow;
+        }
+        &.good {
+            border-color: $green;
+            background-color: $greenbg;
         }
     }
 

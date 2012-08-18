@@ -44,7 +44,7 @@ class Company(object):
     ein = '38-0218963'
     name = 'Crazy R Software'
     incorporation_date = Date(2011, 8, 1)
-    now = Date(2012, 8, 20)
+    today = Date(2012, 8, 20)
 
     business = Account('business')
     alice = Account('employee')

@@ -12,7 +12,7 @@ title = u"Employer's Annual Federal Unemployment (FUTA) Tax Return"
 
 
 def periods(company):
-    return list(years_range(company.incorporation_date, company.now))
+    return list(years_range(company.incorporation_date, company.today))
 
 
 def tally(company, filing):

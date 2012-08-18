@@ -21,7 +21,8 @@
     <td>
       {% for filing in row.filings %}
       <span class="filing tipped">
-        <a class="tipped" href="{{ filing|href }}">{{ filing.form.name }}</a>
+        <a href="{{ filing|href }}"
+           class="{{ filing.state }}">{{ filing.form.name }}</a>
         <span>
           <span class="title">{{ filing.form.title }}</span>
           {% if filing.balance_due %}

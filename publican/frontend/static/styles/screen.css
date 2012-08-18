@@ -527,16 +527,20 @@ hgroup h1 {
   margin: 2em auto;
   /* Tooltip shows a tax-form summary. */
 }
-.main-timeline th, .main-timeline td {
-  padding: 1px .8em;
+.main-timeline th {
+  padding: 0 .4em .5em .4em;
+}
+.main-timeline td {
+  padding: 0 .4em;
 }
 .main-timeline td:first-child {
   font-weight: bold;
 }
-.main-timeline th:last-child {
-  text-align: right;
+.main-timeline td:nth-child(2) {
+  text-align: left;
+  border-right: 1px solid #332a19;
 }
-.main-timeline td {
+.main-timeline td:nth-child(3) {
   text-align: left;
 }
 .main-timeline td:nth-child(4) {
@@ -559,6 +563,10 @@ hgroup h1 {
   -webkit-box-shadow: 0 1px 7px black;
   -moz-box-shadow: 0 1px 7px black;
   box-shadow: 0 1px 7px black;
+}
+.main-timeline a.good {
+  border-color: #c7cc33;
+  background-color: #f8f9ec;
 }
 .main-timeline .tipped > :last-child {
   left: -8.4em;

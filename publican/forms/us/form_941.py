@@ -29,7 +29,7 @@ grids = {
 
 
 def periods(company):
-    december = Date(company.now.year, 12, 1)
+    december = Date(company.today.year, 12, 1)
     return list(quarters_range(company.incorporation_date, december))
 
 
