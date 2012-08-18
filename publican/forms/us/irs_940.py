@@ -34,11 +34,10 @@ def tally(company, filing):
 
     p.line3 = wages
 
-    get_employee_id = lambda t: t.account.id
+    get_employee_id = lambda t: t.credit_to.id
     tlist.sort(key=get_employee_id)
-    p.line5 = sum(t.amount - _sevenk
-                  for k, sublist in groupby(tlist, get_employee_id)
-                  for t in sublist)
+    p.line5 = sum(max(0, sum(t.amount for t in sublist) - _sevenk)
+                  for k, sublist in groupby(tlist, get_employee_id))
 
     p.line6 = p.line5
     p.line7a = p.line3 - p.line6

@@ -7,7 +7,6 @@ zero = Decimal('0')
 def cents(n):
     return n.quantize(two_places)
 
-
 class Date(date):
     def next_business_day(self):
         w = self.weekday()

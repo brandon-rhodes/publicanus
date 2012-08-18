@@ -15,7 +15,7 @@ class Year(Period):
         self.end = Date(number, 12, 31)
 
     def __unicode__(self):
-        return u'{}'.format(self.year)
+        return u'{}'.format(self.number)
 
     def next(self):
         return Year(self.number + 1)
