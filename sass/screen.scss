@@ -1,1 +1,23 @@
 @import "_normalize";
+
+/* ==================== Publican styles ==================== */
+
+/* http://paulirish.com/2012/box-sizing-border-box-ftw/ */
+* { box-sizing: border-box }
+
+$white: #f8f8f8;  /* not really */
+$brilliant: #fff;
+
+/* Property order follows the standard explained in:
+   http://rhodesmill.org/brandon/2011/concentric-css/ */
+
+body {
+    background-color: $white;
+    text-align: center;
+    font-size: 18px / 16px * 100%;
+}
+body > div {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 40em;
+}
