@@ -8,13 +8,15 @@
 </hgroup>
 
 <table class="filing-table">
+  {% spaceless %}
   {% for row in grid %}
   <tr>
-    {% for item in row %}
-    <td{% if item|is_decimal %} class="numeric"{% endif %}>{{ item }}</td>
+    {% for datum, colspan in row %}
+    <td{% if datum|is_decimal %} class="numeric"{% endif %}{% if colspan %} colspan="{{ colspan }}"{% endif %}>{{ datum }}</td>
     {% endfor %}
   </tr>
   {% endfor %}
+  {% endspaceless %}
 </table>
 
 {% endblock %}

@@ -70,13 +70,15 @@ def generate_grid(filing):
     """Convert a `grid` string into a table structure."""
 
     def generate_row(page, line):
-        for word in line.split():
-            word = word.strip('-') #TODO
+        for spec in line.split():
+            word = spec.strip('-')
+            hyphens = len(spec) - len(word)
+            colspan = hyphens + 1 if hyphens else None
             if word == 'x':
-                yield u''
-                continue
-            print repr( getattr(page, word, u'?'))
-            yield getattr(page, word, u'?')
+                datum = u''
+            else:
+                datum = getattr(page, word, u'?')
+            yield datum, colspan
 
     for page in filing.pages:
         grid = filing.form.grids[page.number]
