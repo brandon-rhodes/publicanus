@@ -1,10 +1,9 @@
 from collections import defaultdict
-from datetime import datetime
 
 from django.http import Http404
 from django.shortcuts import render_to_response
 
-from publican.engine.kit import cents, get_period
+from publican.engine.kit import Interval, cents, get_period
 from publican.engine.tests.sample import company
 from publican.forms import registry
 from publican.forms.common import Filing
@@ -12,11 +11,6 @@ from publican.forms.common import Filing
 
 class Row(object):
     """Throwaway class for the table rows we build for the template."""
-
-
-def _display_month(filing):
-    d = filing.due_date
-    return datetime(d.year, d.month + (1 if d.day < 6 else 0), 1)
 
 
 def index(request):
@@ -55,4 +49,19 @@ def filing(request, region, name, period_name):
     return render_to_response('publican/filing.html', {
         'filing': filing,
         'form': form,
+        'grid': form.grid,
         })
+
+# Helpful functions.
+
+def _display_month(filing):
+    """Decide in which month we will display a given filing.
+
+    Sometimes a form that one thinks of a "due at the end of July" is
+    actually due on August 1st or 2nd because July 31st happens to fall
+    on a weekend.  It would be unreasonable to display such a form in
+    the interface as an "August" form, so we display such forms "early"
+    by moving them back into the previous month.
+
+    """
+    return (filing.due_date - Interval(days=5)).replace(day=1)
