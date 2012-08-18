@@ -482,7 +482,7 @@ table {
 /* Property order follows the standard explained in:
    http://rhodesmill.org/brandon/2011/concentric-css/ */
 body {
-  background-color: #fdfdfb;
+  background-color: #fcfbf8;
   color: #332a19;
   text-align: center;
   font-family: Arial, sans-serif;
@@ -505,13 +505,14 @@ h1 {
   font-family: "Open Sans Condensed", Arial, sans-serif;
 }
 
+/* The hgroup is for pages with both a heading <h1> and subheading <h2>. */
 hgroup {
+  margin-bottom: 3em;
   font-family: "Open Sans Condensed", Arial, sans-serif;
+  line-height: 1;
 }
 hgroup h1 {
-  margin: .4em 0;
   font-size: 3em;
-  line-height: 1;
 }
 
 /* Universal styles all have hyphens in their name. */
@@ -579,11 +580,26 @@ hgroup h1 {
 
 /* This table displays the values in a particular form as filed on a
    particular date. */
+.filing-table th {
+  text-align: right;
+  padding: 0 .3em 0 1em;
+}
 .filing-table td {
-  border: 1px solid #332a19;
+  position: relative;
+  border: 5px solid #fcfbf8;
   background-color: white;
   text-align: left;
-  padding: 0 .3em;
+  padding: 1px .3em;
+}
+.filing-table td:before {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  content: ' ';
+  display: block;
+  height: 100%;
+  width: 100%;
+  border: 1px solid black;
 }
 .filing-table td.numeric {
   text-align: right;
