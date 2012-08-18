@@ -3,9 +3,13 @@ from decimal import Decimal
 from publican.engine.time import quarters_range
 from ..common import Filing, cents, zero
 
-arbitrary = Decimal('0.1195')
-point104 = Decimal('.104')
-point029 = Decimal('.029')
+_arbitrary = Decimal('0.1195')
+_point104 = Decimal('.104')
+_point029 = Decimal('.029')
+
+
+name = u"941"
+title = u"Employer's QUARTERLY Federal Tax Return"
 
 
 def periods(company):
@@ -34,15 +38,15 @@ def reckon(company, period):
 
     p.line1 = number_of_employees
     p.line2 = wages
-    p.line3 = cents(wages * arbitrary)            # TODO
+    p.line3 = cents(wages * _arbitrary)            # TODO
 
     p.line5a1 = wages                             # TODO
     p.line5b1 = 0                                 # TODO
     p.line5c1 = wages                             # TODO
 
-    p.line5a2 = cents(p.line5a1 * point104)
-    p.line5b2 = cents(p.line5b1 * point104)
-    p.line5c2 = cents(p.line5c1 * point029)
+    p.line5a2 = cents(p.line5a1 * _point104)
+    p.line5b2 = cents(p.line5b1 * _point104)
+    p.line5c2 = cents(p.line5c1 * _point029)
 
     p.line5d = p.line5a2 + p.line5b2 + p.line5c2
     p.line5e = zero
