@@ -541,6 +541,9 @@ hgroup h1 {
   margin: 2em auto;
   /* Tooltip shows a tax-form summary. */
 }
+.main-timeline tr:nth-child(2n) td {
+  background: #f7f5ee;
+}
 .main-timeline th {
   padding: 1em .5em;
   font-size: 0.75em;
