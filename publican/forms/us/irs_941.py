@@ -13,7 +13,8 @@ title = u"Employer's QUARTERLY Federal Tax Return"
 
 
 def periods(company):
-    return list(quarters_range(company.incorporation_date, company.now))
+    december = Date(company.now.year, 12, 1)
+    return list(quarters_range(company.incorporation_date, december))
 
 
 def tally(company, filing):
