@@ -23,8 +23,9 @@ $highlight: lighten(desaturate($yellow, 50), 45);
 
 $yellowtext: darken($yellow, 21);
 $greentext: darken($green, 21);
-
 $black: #332a19;
+$lighttext: darken(desaturate($yellow, 60), 0);
+
 $white: lighten(desaturate($yellow, 50), 48);
 $brilliant: #fff;
 $formedge: $yellow;
@@ -63,6 +64,12 @@ body > table {
     margin-left: auto;
     margin-right: auto;
 }
+body > p {
+    margin: 2em auto;
+    max-width: 40em;
+    color: $lighttext;
+}
+
 h1 {
     font-family: $condensed;
 }

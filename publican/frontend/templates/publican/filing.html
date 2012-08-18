@@ -6,8 +6,14 @@
 {% block body %}
 <hgroup>
   <h1>{{ form.name }}</h1>
-  <h2>{{ filing.form.title }}</h2>
+  <h2>{{ filing.form.title }}<br>{{ filing.period }}</h2>
 </hgroup>
+
+<p>
+  This form
+  {% if today < filing.due_date %}will be{% else %}was{% endif %}
+  due on {{ filing.due_date|date:"d E Y" }}
+</p>
 
 <table class="filing-table">
   {% spaceless %}

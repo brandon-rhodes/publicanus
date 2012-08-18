@@ -83,6 +83,7 @@ def filing(request, region, name, period_name):
         'filing': filing,
         'form': form,
         'grid': generate_grid(filing),
+        'today': company.today,
         })
 
 
