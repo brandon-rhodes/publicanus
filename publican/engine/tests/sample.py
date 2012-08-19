@@ -12,6 +12,11 @@ from publican.forms.registry import get_form
 def build_company():
     """Create a sample `Company` with pre-loaded test data."""
 
+    def A(type):
+        a = Account()
+        a.type = type
+        return a
+
     def F(region, name, period, date):
         form = get_form(region, name)
         f = Filing(form, period)
@@ -29,10 +34,10 @@ def build_company():
     b.today = Date(2012, 8, 20)  # override, so tests are predictable!
     print b.today
 
-    business = Account('business')
-    alice = Account('employee')
-    bob = Account('employee')
-    carol = Account('consultant')
+    business = A('business')
+    alice = A('employee')
+    bob = A('employee')
+    carol = A('consultant')
 
     business.id, alice.id, bob.id, carol.id = range(4)
 

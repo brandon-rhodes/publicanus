@@ -27,7 +27,7 @@ def create_demo(request):
     user = authenticate(username=name, password=pw)
     login(request, user)
 
-    a = models.Account('business')
+    a = models.Account()
     a.type = 'business'
     a.save()
 

@@ -39,10 +39,7 @@ class Account(object):
 
     """
     TYPES = ('business', 'consultant', 'employee')
-
-    def __init__(self, type):
-        assert type in self.TYPES
-        self.type = type
+    type = None
 
 
 class Transaction(object):

@@ -16,9 +16,6 @@ class CompanyUser(models.Model):
 class Account(types.Account, models.Model):
     type = models.CharField(max_length=12)
 
-    def __init__(self, *args, **kw):
-        models.Model.__init__(self, *args, **kw)
-
 
 class Transaction(types.Transaction, models.Model):
     date = models.DateField()
