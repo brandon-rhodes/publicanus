@@ -34,6 +34,8 @@ def build_company():
     bob = Account('employee')
     carol = Account('consultant')
 
+    business.id, alice.id, bob.id, carol.id = range(4)
+
     b._filings = [
         F('us', '941', Quarter(2011, 3), Date(2011, 11, 5)),
         F('us', '940', Year(2011), Date(2012, 1, 20)),

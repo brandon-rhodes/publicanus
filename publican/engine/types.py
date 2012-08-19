@@ -41,8 +41,8 @@ class Account(object):
     TYPES = ('business', 'consultant', 'employee')
 
     def __init__(self, type):
+        super(Account, self).__init__()
         assert type in self.TYPES
-        self.id = id(self)
         self.type = type
 
 
@@ -57,7 +57,6 @@ class Transaction(object):
     """
     def __init__(self, date, debit_account, credit_account, amount,
                  comment=''):
-        self.id = id(self)
         self.date = date
         self.debit_account = debit_account
         self.credit_account = credit_account

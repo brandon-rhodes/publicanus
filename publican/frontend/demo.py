@@ -6,6 +6,8 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render_to_response
 
+from publican.engine import models
+
 
 def welcome_page(request):
     """For the purposes of this demo, offer one-click account creation."""
@@ -19,9 +21,19 @@ def create_demo(request):
 
     name = ''.join(random.sample(ascii_lowercase, 8))
     pw = ''.join(random.sample(ascii_lowercase, 8))
-    print name, pw
     user = User.objects.create_user(name, 'unknown.rhodesmill.org', pw)
     user.save()
+
     user = authenticate(username=name, password=pw)
     login(request, user)
+
+    a = models.Account('business')
+    a.type = 'business'
+    a.save()
+
+    cu = models.CompanyUser()
+    cu.user = user
+    cu.company = a
+    cu.save()
+
     return redirect('/')
