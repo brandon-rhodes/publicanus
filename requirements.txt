@@ -1,4 +1,5 @@
 Django==1.4.1
+dj-database-url==0.2.1
 django-debug-toolbar==0.9.4
 django-tastypie==0.9.11
 gunicorn==0.14.6

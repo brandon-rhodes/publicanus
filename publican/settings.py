@@ -13,20 +13,18 @@ MANAGERS = ADMINS
 
 INTERNAL_IPS = ('127.0.0.1',)
 
+# Per https://devcenter.heroku.com/articles/django#database-settings
+
+import dj_database_url
+
+if 'test' in sys.argv:
+    default_database_url = 'sqlite3:///:memory:/'
+else:
+    default_database_url = 'postgres:///publican'
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
+    'default': dj_database_url.config(default=default_database_url),
     }
-} if 'test' in sys.argv else {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'publican',
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',
-        'PORT': '',
-    }
-}
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
