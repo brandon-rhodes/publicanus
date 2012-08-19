@@ -22,7 +22,7 @@ def create_demo(request):
 
     name = ''.join(random.sample(ascii_lowercase, 8))
     pw = ''.join(random.sample(ascii_lowercase, 8))
-    user = User.objects.create_user(name, 'unknown.rhodesmill.org', pw)
+    user = User.objects.create_user(name, 'demo@unknown.rhodesmill.org', pw)
     user.save()
 
     user = authenticate(username=name, password=pw)
@@ -32,10 +32,11 @@ def create_demo(request):
                            models.Filing, models.Transaction,
                            assign_fake_ids=False)
 
-    for f in company._filings:
-        f.save()
     for a in company._accounts:
         a.save()
+    for f in company._filings:
+        f.filer = f.filer
+        f.save()
     for t in company._transactions:
         t.credit_account = t.credit_account
         t.debit_account = t.debit_account

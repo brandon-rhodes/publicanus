@@ -17,10 +17,12 @@ class Filing(object):
     `Filing` of that form.
 
     """
-    date = None   # for "ideal" filings; "real" filings have a value
-    form = None
-    period = None
-    pages = ()    # in practice, replace this with a mutable list
+    date = None    # for "ideal" filings; "real" filings have a value
+    form = None    # TODO: remove this?
+    region = None  # form region
+    name = None    # form name
+    period = None  # period
+    pages = ()     # in practice, replace this with a mutable list
 
     def new_page(self, number):
         """Constructor called by tally functions to insert a new page.
@@ -35,6 +37,9 @@ class Filing(object):
         p = Page(number)
         self.pages.append(p)
         return p
+
+    def __unicode__(self):
+        return u'{} {} {}'.format(self.region, self.name, self.period)
 
 
 class Page(object):

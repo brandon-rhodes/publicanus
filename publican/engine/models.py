@@ -22,6 +22,7 @@ class Account(types.Account, models.Model):
 
 
 class Filing(filings.Filing, models.Model):
+    filer = models.ForeignKey('Account', related_name='filings')
     region = models.CharField(max_length=12)
     name = models.CharField(max_length=12)
     period = models.CharField(max_length=12)
@@ -66,15 +67,15 @@ class Company(company.Company):
         if self._filings is not None:
             return company.Company.filings(self, form=form, period=period)
 
-        q = Filing.objects
+        q = Q(filer=self.account)
 
         if form is not None:
-            q = q.filter(region=form.region, name=form.name)
+            q &= Q(region=form.region, name=form.name)
 
         if period is not None:
-            q = q.filter(period=unicode(period))
+            q &= Q(period=unicode(period))
 
-        return q.all()
+        return list(Filing.objects.filter(q))
 
     def transactions(self, within=None, debit_type=None, credit_type=None):
         """Implement the standard transactions filter, as a Django query."""

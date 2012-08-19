@@ -18,9 +18,10 @@ def build_sample(Account, Company, Filing, Transaction, assign_fake_ids=True):
             setattr(thing, k, v)
         return thing
 
-    def F(region, name, period, date):
+    def F(filer, region, name, period, date):
         form = get_form(region, name)
         f = Filing()
+        f.filer = filer
         f.region = region
         f.name = name
         f.form = form
@@ -50,10 +51,10 @@ def build_sample(Account, Company, Filing, Transaction, assign_fake_ids=True):
     c._accounts = [business, alice, bob, carol]
 
     c._filings = [
-        F('us', '941', Quarter(2011, 3), Date(2011, 11, 5)),
-        F('us', '940', Year(2011), Date(2012, 1, 20)),
-        F('us', '941', Quarter(2011, 4), Date(2012, 1, 20)),
-        F('us', '941', Quarter(2012, 1), Date(2012, 4, 15)),
+        F(business, 'us', '941', Quarter(2011, 3), Date(2011, 11, 5)),
+        F(business, 'us', '940', Year(2011), Date(2012, 1, 20)),
+        F(business, 'us', '941', Quarter(2011, 4), Date(2012, 1, 20)),
+        F(business, 'us', '941', Quarter(2012, 1), Date(2012, 4, 15)),
         ]
 
     T = Transaction

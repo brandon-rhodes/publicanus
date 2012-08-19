@@ -23,11 +23,13 @@ def index(request):
 
     for form in sorted(registry.all_forms(), key=lambda f: f.name):
         for period in form.periods(company):
+
             filing = form.tally(company, period)
             filing.real_filings = list(company.filings(
                 form=form,
                 period=period,
                 ))
+
             filing.state = (
                 'filed' if filing.real_filings else
                 'warn' if filing.due_date > company.today else
@@ -105,13 +107,20 @@ def _get_company(request):
     if False:
         from publican.engine.tests.sample import company
         return company
+
+    # Find the Account object that represents this user business.
+
     from ..engine.models import CompanyUser, Company
     cu = CompanyUser.objects.select_related('company').get(user=request.user)
     account = cu.company
+
+    # Wrap the Account in our facade, and return.
+
     c = Company()
     c.account = account
     c.today = Date.today()
     return c
+
 
 def _display_month(filing):
     """Decide in which month we will display a given filing.

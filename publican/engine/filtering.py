@@ -10,12 +10,12 @@ class methods.
 def filter_filings(seq, form=None, period=None):
     """Generate a list of filings in `seq` that match the criteria."""
 
-    if form is not None:  # Forms are singletons, right? Right! (gulp)
-        seq = (f for f in seq if f.form is form)
+    if form is not None:
+        seq = (f for f in seq if f.region == form.region
+                             and f.name == form.name)
 
     if period is not None:
-        seq = (f for f in seq if f.period.start == period.start
-                             and f.period.end == period.end)
+        seq = (f for f in seq if f.period == unicode(period))
 
     return seq
 
