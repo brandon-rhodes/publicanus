@@ -13,21 +13,26 @@
 
 <p>
   This form
-  {% if today == filing.due_date %}is due today
-  {% else %}{% if today < filing.due_date %}will be{% else %}was{% endif %}
-  due on {{ filing.due_date|mydate:"d B Y" }}{% endif %}
+  {% if today == filing.due_date %}
+    is due today
+  {% else %}
+    {% if today < filing.due_date %}will be{% else %}was{% endif %}
+    due on {{ filing.due_date|mydate:"d B Y" }}
+  {% endif %}
   <br>
   {% if real_filings %}
-  and you filed it
-  on {{ real_filings.0.date|mydate:"d B Y" }}
-  <br>
-  which was
-  {% with offset=real_filings.0.offset %}
-  {% if offset == 0 %}<span class="is-happy">right on time!</span>
-  {% elif offset > 0 %}<span class="is-happy">{{ offset }} days early!</span>
-  {% else %}<span class="is-sad">{{ offset|abs }} days late.</span>
-  {% endif %}
-  {% endwith %}
+    and you filed it
+    on {{ real_filings.0.date|mydate:"d B Y" }}
+    <br>
+    which was
+    {% with offset=real_filings.0.offset %}
+    {% if offset == 0 %}<span class="is-happy">right on time!</span>
+    {% elif offset > 0 %}<span class="is-happy">{{ offset }} days early!</span>
+    {% else %}<span class="is-sad">{{ offset|abs }} days late.</span>
+    {% endif %}
+    {% endwith %}
+  {% elif filing.due_date < today %}
+    so <b class="is-sad">this form is now late.</b>
   {% endif %}
 </p>
 <p>
