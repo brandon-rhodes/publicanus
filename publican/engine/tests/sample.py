@@ -35,10 +35,14 @@ def build_sample(Account, Company, Filing, Transaction, assign_fake_ids=True):
 
     c.today = Date(2012, 8, 20)  # override, so tests are predictable!
 
-    business = make(Account, type='business')
     alice = make(Account, type='employee')
     bob = make(Account, type='employee')
     carol = make(Account, type='consultant')
+
+    business = c.account
+    if business is None:
+        business = make(Account, type='business')
+        c.account = business
 
     if assign_fake_ids:
         business.id, alice.id, bob.id, carol.id = range(4)

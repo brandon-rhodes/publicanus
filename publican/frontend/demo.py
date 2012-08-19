@@ -28,10 +28,6 @@ def create_demo(request):
     user = authenticate(username=name, password=pw)
     login(request, user)
 
-    # a = models.Account()
-    # a.type = 'business'
-    # a.save()
-
     company = build_sample(models.Account, models.Company,
                            models.Filing, models.Transaction,
                            assign_fake_ids=False)
@@ -42,12 +38,12 @@ def create_demo(request):
         a.save()
     for t in company._transactions:
         t.credit_account = t.credit_account
-        t.debit_account = t.credit_account
+        t.debit_account = t.debit_account
         t.save()
 
     cu = models.CompanyUser()
     cu.user = user
-    cu.company = a
+    cu.company = company.account
     cu.save()
 
     return redirect('/')
