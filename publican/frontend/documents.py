@@ -28,7 +28,7 @@ def pdf(request, region, name, period_name):
     c.showPage()
 
     datadir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data')
-    pdfpath = os.path.join(datadir, 'f940--2011.pdf')
+    pdfpath = os.path.join(datadir, form.filename)
 
     taxform = PdfFileReader(file(pdfpath, 'rb'))
     rendering = PdfFileReader(StringIO(c.getpdfdata()))
