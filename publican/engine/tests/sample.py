@@ -4,7 +4,7 @@ from decimal import Decimal
 
 from publican.engine.company import Company
 from publican.engine.filings import Filing
-from publican.engine.kit import Date, Quarter, Year
+from publican.engine.kit import Date, Quarter, Year, months_range
 from publican.engine.types import Account, Transaction
 
 
@@ -54,30 +54,39 @@ def build_sample(Account, Company, Filing, Transaction, assign_fake_ids=True):
         F(business, 'us', '941', Quarter(2012, 1), Date(2012, 4, 15)),
         ]
 
-    T = Transaction
+    c._transactions = []
 
-    c._transactions = [
-        make(T, date=Date(2011, 11, 29), debit_account=business,
-             credit_account=alice, amount=Decimal(1400)),
-        make(T, date=Date(2011, 12, 29), debit_account=business,
-             credit_account=alice, amount=Decimal(2200)),
+    def add(**kw):
+        c._transactions.append(make(Transaction, **kw))
 
-        make(T, date=Date(2012, 1, 29), debit_account=business,
-             credit_account=alice, amount=Decimal(2200)),
-        make(T, date=Date(2012, 1, 29), debit_account=business,
-             credit_account=bob, amount=Decimal(900)),
-        make(T, date=Date(2012, 1, 29), debit_account=bob,
-             credit_account=business, amount=Decimal(99)), # reimbursement
-        make(T, date=Date(2012, 2, 29), debit_account=business,
-             credit_account=carol, amount=Decimal(1000)),
-        make(T, date=Date(2012, 2, 29), debit_account=business,
-             credit_account=alice, amount=Decimal(2200)),
-        make(T, date=Date(2012, 3, 29), debit_account=business,
-             credit_account=alice, amount=Decimal(2200)),
+    # Alice is the owner.
 
-        make(T, date=Date(2012, 4, 29), debit_account=business,
-             credit_account=alice, amount=Decimal(2200)),
-        ]
+    for month in months_range(Date(2011, 11, 1), Date(2012, 8, 1)):
+        add(date=month.end, debit_account=business,
+            credit_account=alice, amount=Decimal(2000))
+
+    # She had an employee for a few months.
+
+    for month in months_range(Date(2011, 12, 1), Date(2012, 5, 1)):
+        add(date=month.end, debit_account=business,
+            credit_account=alice, amount=Decimal(1600))
+
+    # And she has an active consultant.
+
+    add(date=Date(2011, 12, 1), debit_account=business,
+        credit_account=carol, amount=Decimal('572'))
+    add(date=Date(2012, 1, 1), debit_account=business,
+        credit_account=carol, amount=Decimal('983'))
+    add(date=Date(2012, 2, 1), debit_account=business,
+        credit_account=carol, amount=Decimal('1452'))
+    add(date=Date(2012, 3, 1), debit_account=business,
+        credit_account=carol, amount=Decimal('821'))
+    add(date=Date(2012, 5, 1), debit_account=business,
+        credit_account=carol, amount=Decimal('1396'))
+    add(date=Date(2012, 6, 1), debit_account=business,
+        credit_account=carol, amount=Decimal('1008'))
+    add(date=Date(2012, 7, 1), debit_account=business,
+        credit_account=carol, amount=Decimal('939'))
 
     return c
 

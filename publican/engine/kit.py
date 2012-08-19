@@ -61,6 +61,11 @@ class Month(Period):
         self.end = Date(year, number, mdays[number] + bump)
         self.name = u'{}-{:02}'.format(year, number)
 
+    def next(self):
+        if self.number == 12:
+            return Month(self.year + 1, 1)
+        return Month(self.year, self.number + 1)
+
 class Quarter(Period):
     def __init__(self, year, number):
         self.year = year
@@ -117,3 +122,11 @@ def quarters_range(start, end):
     while quarter.end < end:
         quarter = quarter.next()
         yield quarter
+
+def months_range(start, end):
+    """Return the months from date `start` to `end` inclusive."""
+    month = Month(start.year, start.month)
+    yield month
+    while month.end < end:
+        month = month.next()
+        yield month
