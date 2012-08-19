@@ -26,6 +26,7 @@ class NameAddress(models.Model):
     name = models.CharField(max_length=96)
     address = models.TextField()
 
+
 class Filing(filings.Filing, models.Model):
     filer = models.ForeignKey('Account', related_name='filings', db_index=True)
     region = models.CharField(max_length=12)
