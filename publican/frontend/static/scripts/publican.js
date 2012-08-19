@@ -14,6 +14,8 @@ $(document).ready(function() {
     var $create_button = $('.create-filing');
     var $create_input = null;
 
+    var ignore_submit = false;
+
     $create_button.click(function(event) {
         if ($create_input !== null) {
             $create_input.show();
@@ -25,6 +27,11 @@ $(document).ready(function() {
             var val = $create_input.val();
             if (!/^[0-9]+\/[0-9]+\/[0-9]+/.test(val))
                 return;
+
+            if (ignore_submit)
+                return;
+
+            ignore_submit = true;
 
             var url = $('.create-filing').attr('data-url');
             var json = $('.create-filing').attr('data-json');
@@ -38,7 +45,11 @@ $(document).ready(function() {
                 contentType: 'application/json',
                 data: JSON.stringify(data),
                 success: function() {
+                    ignore_submit = false;
                     reload_page();
+                },
+                error: function() {
+                    ignore_submit = false;
                 }
             });
             $create_input.hide();
