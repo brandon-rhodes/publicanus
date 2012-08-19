@@ -3,22 +3,21 @@
 from tastypie import fields
 from tastypie.authorization import Authorization
 from tastypie.resources import ModelResource
-from ..engine import filings, models
+from ..engine import models
+
 
 class PublicanAuthorization(Authorization):
 
-    def is_authorized(self, request, object=None):
-        print 'BEING ASKED IF AUTH'
-        return True
-
     def apply_limits(self, request, query):
-        return query
-        print 'HEREE!'
+
         if request.company is None:
             return query.none()
         account = request.company.account
 
-        if issubclass(query.model, filings.Filing):
+        if issubclass(query.model, models.Account):
+            return query.filter(id=account.id)
+
+        if issubclass(query.model, models.Filing):
             return query.filter(filer_id=account.id)
 
         return query.none()
