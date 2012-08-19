@@ -1,0 +1,32 @@
+{% extends "publican/_design.html" %}
+{% load publican %}
+
+{% block title %}Publican - Your Small Business{% endblock %}
+
+{% block body %}
+<div><a class="button return-home" href="/">← Home</a></div>
+
+<h1>Ledger</h1>
+
+<p>
+  This double-entry ledger is the core of your financials,
+  from which all of Publican's tax calculations derive.
+</p>
+
+<table class="main-timeline">
+  <tr>
+    <th>
+    <th>
+    <th>Who
+    <th>Activity
+    <th>Payment
+  </tr>
+  {% for row in rows %}
+  {% endfor %}
+</table>
+
+<p>
+  (The table will support live editing once we reach beta.)
+</p>
+
+{% endblock %}
