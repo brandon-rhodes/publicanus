@@ -50,7 +50,14 @@ class Form(object):
     and setting up a `Form`, to hand that same instance to as many
     threads as it likes without consequence.
 
+    As a mild reminder of the fact that instances are intended to be
+    read-only, it defines `__slots__` to protect code that might write
+    an attribute on a `Form` that it might actually have intended for
+    one of its own classes.
+
     """
+    __slots__ = ('_module', 'region', 'name', 'title', 'grids')
+
     def __init__(self, module):
         parts = module.__name__.split('.')
         self._module = module
