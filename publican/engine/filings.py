@@ -17,6 +17,8 @@ class Filing(object):
     `Filing` of that form.
 
     """
+    date = None  # for "ideal" filings; "real" filings have a value
+
     def __init__(self, form, period):
         self.form = form
         self.period = period

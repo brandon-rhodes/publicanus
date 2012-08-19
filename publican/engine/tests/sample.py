@@ -3,16 +3,10 @@
 from datetime import date as Date
 from decimal import Decimal
 
+from publican.engine.filings import Filing
 from publican.engine.kit import Quarter, Year
 from publican.engine.types import Account
-
-
-class SampleFiling(object):
-    def __init__(self, region, name, period, date):
-        self.region = region
-        self.name = name
-        self.period = period
-        self.date = date
+from publican.forms.registry import get_form
 
 
 class SampleTransaction(object):
@@ -33,8 +27,8 @@ def filter_filings(filings, **kw):
 
     form = kw.pop('form', None)
     if form is not None:
-        ff = (f for f in ff
-              if f.region == form.region and f.name == form.name)
+        # Forms are singletons, right?  Right.  (gulp!)
+        ff = (f for f in ff if f.form is form)
 
     period = kw.pop('period', None)
     if period is not None:
@@ -62,10 +56,16 @@ def filter_transactions(transactions, **kw):
     return tt
 
 
-F = SampleFiling
 T = SampleTransaction
 
 class Company(object):
+
+    def F(region, name, period, date):
+        form = get_form(region, name)
+        f = Filing(form, period)
+        f.date = date
+        return f
+
     ein = '38-0218963'
     name = 'Crazy R Software'
     incorporation_date = Date(2011, 8, 1)
