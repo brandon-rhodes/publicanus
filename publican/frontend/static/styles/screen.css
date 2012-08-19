@@ -539,6 +539,9 @@ footer a {
 a.button {
   display: inline-block;
   border: 1px solid #eebe11;
+  -webkit-box-shadow: 2px 2px 4px #a2935d;
+  -moz-box-shadow: 2px 2px 4px #a2935d;
+  box-shadow: 2px 2px 4px #a2935d;
   -webkit-border-radius: 0.3em 0.3em;
   -moz-border-radius: 0.3em / 0.3em;
   border-radius: 0.3em / 0.3em;
@@ -639,6 +642,9 @@ hgroup h1 {
 .main-timeline a {
   display: inline-block;
   border: 1px solid #eebe11;
+  -webkit-box-shadow: 2px 2px 4px #a2935d;
+  -moz-box-shadow: 2px 2px 4px #a2935d;
+  box-shadow: 2px 2px 4px #a2935d;
   -webkit-border-radius: 0.3em 0.3em;
   -moz-border-radius: 0.3em / 0.3em;
   border-radius: 0.3em / 0.3em;

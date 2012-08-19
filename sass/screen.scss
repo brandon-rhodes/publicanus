@@ -39,9 +39,8 @@ $condensed: 'Open Sans Condensed', $font;
 
 $smallnum: 16px / 18px * 1em;
 
-@mixin tipshadow {
-    @include single-box-shadow(#000, 0, 1px, 7px);
-};
+@mixin lightshadow { @include single-box-shadow($lighttext, 2px, 2px, 4px); };
+@mixin darkshadow { @include single-box-shadow(#000, 0, 1px, 7px); };
 
 /* Property order follows the standard explained in:
    http://rhodesmill.org/brandon/2011/concentric-css/
@@ -99,13 +98,14 @@ footer {
 @mixin abutton {
     display: inline-block;
     border: 1px solid $formedge;
+    @include lightshadow;
     @include border-radius(.3em, .3em);
     color: $black;
     line-height: 1.2;
     text-decoration: none;
     &:hover {
         background-color: $brilliant;
-        @include tipshadow;
+        @include darkshadow;
     }
     &.late {
         border-color: $red;
@@ -243,7 +243,7 @@ hgroup {
         bottom: 130%;
         @include single-transition(opacity, 0.1s, linear);
         @include border-radius(.5em, .5em);
-        @include tipshadow;
+        @include darkshadow;
         background-color: $brilliant;
     }
     &:hover > :last-child {
