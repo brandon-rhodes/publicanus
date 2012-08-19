@@ -4,12 +4,7 @@ from datetime import date as Date
 from decimal import Decimal
 
 from publican.engine.kit import Quarter, Year
-
-
-class SampleAccount(object):
-    def __init__(self, type):
-        self.id = id(self)
-        self.type = type
+from publican.engine.types import Account
 
 
 class SampleFiling(object):
@@ -76,10 +71,10 @@ class Company(object):
     incorporation_date = Date(2011, 8, 1)
     today = Date(2012, 8, 20)
 
-    business = SampleAccount('business')
-    alice = SampleAccount('employee')
-    bob = SampleAccount('employee')
-    carol = SampleAccount('consultant')
+    business = Account('business')
+    alice = Account('employee')
+    bob = Account('employee')
+    carol = Account('consultant')
 
     _filings = [
         F('us', '941', Quarter(2011, 3), Date(2011, 11, 5)),

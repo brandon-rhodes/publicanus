@@ -29,3 +29,18 @@ Two things happen to these classes in other code:
    saved for real when the application is up and running.
 
 """
+class Account(object):
+    """An account in our system of double-entry bookkeeping.
+
+    An account is a bare internal identity from which funds can be
+    debited and to which they can be credited.  Other tables provide
+    more information about the entities listed here, depending on what
+    kind of account this is.
+
+    """
+    TYPES = ('business', 'consultant', 'employee')
+
+    def __init__(self, type):
+        assert type in self.TYPES
+        self.id = id(self)
+        self.type = type
