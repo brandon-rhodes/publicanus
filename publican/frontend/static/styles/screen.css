@@ -544,6 +544,7 @@ footer a {
 /* Sometimes buttons appear in random places, and just get a class. */
 a.button {
   display: inline-block;
+  cursor: pointer;
   border: 1px solid #eebe11;
   -webkit-box-shadow: 2px 2px 4px #a2935d;
   -moz-box-shadow: 2px 2px 4px #a2935d;
@@ -647,6 +648,7 @@ hgroup h1 {
 }
 .main-timeline a {
   display: inline-block;
+  cursor: pointer;
   border: 1px solid #eebe11;
   -webkit-box-shadow: 2px 2px 4px #a2935d;
   -moz-box-shadow: 2px 2px 4px #a2935d;

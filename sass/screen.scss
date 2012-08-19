@@ -102,6 +102,7 @@ footer {
 
 @mixin abutton {
     display: inline-block;
+    cursor: pointer;
     border: 1px solid $formedge;
     @include lightshadow;
     @include border-radius(.3em, .3em);
