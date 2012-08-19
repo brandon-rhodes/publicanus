@@ -16,6 +16,8 @@ forms are actually implemented.  Thanks to its conveniences, no other
 code gets exposed to the details of we implement forms using modules.
 
 """
+from publican.engine.filings import Filing
+
 __all__ = ('all_forms', 'get_form')
 
 def all_forms():
@@ -74,12 +76,12 @@ class Form(object):
         """
         return self._module.periods(company)
 
-    def tally(self, company, filing):
-        # TODO: make this match description
+    def tally(self, company, period):
         """Figure out how the `company` should fill in this form for `period`.
 
-        Returns a `publican.engine.kit.Filing` object with one or more
-        pages inside, illustrating how the form should be filled out.
+        Returns a `Filing` object with one or more pages inside,
+        illustrating how the form should be filled out.
 
         """
-        return self._module.tally(company, filing)
+        filing = Filing(self, period)
+        return self._module.tally(company, period, filing)

@@ -1,10 +1,11 @@
 """Template tags for Publican."""
 
-import sys
 from decimal import Decimal
 
 from django import template
 from django.core.urlresolvers import reverse
+
+from ...engine.filings import Filing  # weird; only relative import works here
 
 register = template.Library()
 
@@ -19,9 +20,7 @@ def href(obj):
     when a view name changes, or needs to take different parameters.
 
     """
-    common = sys.modules['publican.forms.common']  # avoid weird ImportError
-
-    if isinstance(obj, common.Filing):
+    if isinstance(obj, Filing):
         region = obj.form.region
         name = obj.form.name
         return reverse('filing', args=(region, name, unicode(obj.period)))

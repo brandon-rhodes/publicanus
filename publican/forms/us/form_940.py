@@ -14,8 +14,7 @@ def periods(company):
     return list(years_range(company.incorporation_date, company.today))
 
 
-def tally(company, filing):
-    period = filing.period
+def tally(company, period, filing):
 
     tlist = list(company.transactions(
         within=period,

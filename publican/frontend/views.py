@@ -6,7 +6,6 @@ from django.shortcuts import render_to_response
 from publican.engine.kit import Interval, Month, dollars, cents, get_period
 from publican.engine.tests.sample import company
 from publican.forms import registry
-from publican.forms.common import Filing
 
 
 class Row(object):
@@ -20,8 +19,7 @@ def index(request):
 
     for form in sorted(registry.all_forms(), key=lambda f: f.name):
         for period in form.periods(company):
-            filing = Filing(form, period)
-            filing.tally(company)
+            filing = form.tally(company, period)
             filing.real_filings = list(company.filings(
                 form=form,
                 period=period,
@@ -76,8 +74,7 @@ def filing(request, region, name, period_name):
     period = get_period(period_name, None)
     if form is None or period is None:
         raise Http404
-    filing = Filing(form, period)
-    filing.tally(company)
+    filing = form.tally(company, period)
     return render_to_response('publican/filing.html', {
         'filing': filing,
         'form': form,
