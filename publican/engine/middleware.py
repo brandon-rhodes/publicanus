@@ -1,5 +1,7 @@
 """Publican Middleware."""
 
+from django.core.exceptions import ObjectDoesNotExist
+
 from .kit import Date
 from .models import CompanyUser, Company
 
@@ -19,10 +21,19 @@ class CompanyMiddleware(object):
 
         # Find the Account object that represents this user business.
 
-        if request.user.is_authenticated():
-            user = request.user
+        if not request.user.is_authenticated():
+            return
+
+        user = request.user
+        try:
             cu = CompanyUser.objects.select_related('company').get(user=user)
-            account = cu.company
-            request.company = Company()
-            request.company.account = account
-            request.company.today = Date.today()
+        except ObjectDoesNotExist:
+            return
+
+        account = cu.company
+
+        # Build our Facade and store it on `request`.
+
+        request.company = Company()
+        request.company.account = account
+        request.company.today = Date.today()
