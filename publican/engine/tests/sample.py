@@ -4,43 +4,10 @@ from datetime import date as Date
 from decimal import Decimal
 
 from publican.engine.filings import Filing
+from publican.engine.filtering import filter_filings, filter_transactions
 from publican.engine.kit import Quarter, Year
 from publican.engine.types import Account, Transaction
 from publican.forms.registry import get_form
-
-
-def filter_filings(filings, **kw):
-    ff = filings
-
-    form = kw.pop('form', None)
-    if form is not None:
-        # Forms are singletons, right?  Right.  (gulp!)
-        ff = (f for f in ff if f.form is form)
-
-    period = kw.pop('period', None)
-    if period is not None:
-        ff = (f for f in ff
-              if f.period.start == period.start and f.period.end == period.end)
-
-    return ff
-
-
-def filter_transactions(transactions, **kw):
-    tt = transactions
-
-    period = kw.pop('within', None)
-    if period is not None:
-        tt = (t for t in tt if period.start <= t.date <= period.end)
-
-    debit_type = kw.pop('debit_type', None)
-    if debit_type is not None:
-        tt = (t for t in tt if t.debit_account.type == debit_type)
-
-    credit_type = kw.pop('credit_type', None)
-    if credit_type is not None:
-        tt = (t for t in tt if t.credit_account.type == credit_type)
-
-    return tt
 
 
 class Company(object):
