@@ -33,6 +33,15 @@
     {% endwith %}
   {% elif filing.due_date < today %}
     so <b class="is-sad">this form is now late.</b>
+  {% elif today = period.end %}
+    so <b class="is-sad">submit this form today.</b>
+  {% elif today <= period.end %}
+    but <b>wait until after {{ period.end|mydate:"d B" }}</b>
+    to start preparing the form, so that your {{ period.name}}
+    records are complete.
+  {% else %}
+    and <b>can now be filed</b> once your {{ period.name }}
+    records are complete!
   {% endif %}
 </p>
 <p>

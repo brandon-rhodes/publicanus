@@ -148,6 +148,7 @@ def filing(request, region, name, period_name):
         'filing': filing,
         'form': form,
         'grid': _generate_grid(form, filing),
+        'period': period,
         'real_filings': real_filings,
         'today': company.today,
         'create_json': json.dumps(create_json),
