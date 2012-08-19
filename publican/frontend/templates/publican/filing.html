@@ -40,7 +40,7 @@
      class="button create-filing">I have now<br>filed this form</a>
 </p>
 {% if real_filings %}
-<p>
+<p class="real-filings">
   {% for real_filing in real_filings %}
     You {% if not forloop.first %}re-{% endif %}filed
     on {{ real_filing.date|mydate:"d B Y" }}
@@ -48,7 +48,7 @@
        data-url="/api/v1/filing/{{ real_filing.id }}/">×<span>
         Remove
     </span></a>
-    {% if not forloop.last %}<br>{% endif %}
+    <br>
   {% endfor %}
 </p>
 {% endif %}

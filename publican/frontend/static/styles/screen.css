@@ -713,9 +713,14 @@ hgroup h1 {
 }
 
 /* Operations that can be performed on the Filing page. */
+.real-filings {
+  text-align: right;
+}
+
 .button.delete-filing {
   border-color: #f63409;
   background-color: #fdece8;
+  padding: .1em .4em;
 }
 .button.delete-filing:hover {
   background-color: #fdece8;

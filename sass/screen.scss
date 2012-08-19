@@ -231,9 +231,13 @@ hgroup {
 
 /* Operations that can be performed on the Filing page. */
 
+.real-filings {
+    text-align: right;
+}
 .button.delete-filing {
     border-color: $red;
     background-color: $redbg;
+    padding: .1em .4em;
     &:hover { background-color: $redbg; }
     :last-child { padding: .2em; }
 }
