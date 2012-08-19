@@ -11,7 +11,7 @@ class Test940(TestCase):
     def test_periods(self):
         form = get_form('us', '940')
         self.assertEqual(
-            [ unicode(period) for period in form.periods(company) ],
+            [ period.name for period in form.periods(company) ],
             [u'2011', u'2012']
             )
 
@@ -29,7 +29,7 @@ class Test941(TestCase):
     def test_periods(self):
         form = get_form('us', '941')
         self.assertEqual(
-            [ unicode(period) for period in form.periods(company) ],
+            [ period.name for period in form.periods(company) ],
             [u'2011-Q3', u'2011-Q4',
              u'2012-Q1', u'2012-Q2', u'2012-Q3', u'2012-Q4']
             )

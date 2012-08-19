@@ -84,7 +84,8 @@ class Form(object):
 
         """
         filing = Filing()
-        filing.form = self
-        filing.period = period
+        filing.region = self.region
+        filing.name = self.name
+        filing.period_name = period.name
         filing.pages = []
         return self._module.tally(company, period, filing)

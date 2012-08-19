@@ -27,9 +27,7 @@ def href(obj):
 
     """
     if isinstance(obj, Filing):
-        region = obj.form.region
-        name = obj.form.name
-        return reverse('filing', args=(region, name, unicode(obj.period)))
+        return reverse('filing', args=(obj.region, obj.name, obj.period_name))
     else:
         raise ValueError('cannot build a URL for {}.{} objects'.format(
                 type(obj).__module__, type(obj).__name__))

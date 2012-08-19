@@ -2,12 +2,12 @@
 {% load publican %}
 {% load publican_api %}
 
-{% block title %}Form {{ form.name }} for {{ filing.period }}{% endblock %}
+{% block title %}Form {{ form.name }} for {{ filing.period_name }}{% endblock %}
 
 {% block body %}
 <hgroup>
   <h1>{{ form.name }}</h1>
-  <h2>{{ filing.form.title }}<br>{{ filing.period }}</h2>
+  <h2>{{ form.title }}<br>{{ filing.period_name }}</h2>
 </hgroup>
 
 <p>

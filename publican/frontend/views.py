@@ -4,7 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.shortcuts import render_to_response
 
-from publican.engine.kit import Date, Interval, Month, dollars, cents, get_period
+from publican.engine.kit import (Date, Interval, Month,
+                                 dollars, cents, get_period)
 from publican.forms import registry
 
 
@@ -60,8 +61,9 @@ def index(request):
             debit_type='business',
             credit_type='consultant',
             )))
-        row.filings = filings_by_month.get(date, ())
-        row.total_due = cents(sum(f.balance_due for f in row.filings))
+        filings = filings_by_month.get(date, ())
+        row.total_due = cents(sum(f.balance_due for f in filings))
+        row.filings = [(form, f) for f in filings]
         rows.append(row)
         if date.month == 12:
             date = date.replace(year=date.year + 1, month=1)
@@ -94,7 +96,7 @@ def filing(request, region, name, period_name):
     return render_to_response('publican/filing.html', {
         'filing': filing,
         'form': form,
-        'grid': _generate_grid(filing),
+        'grid': _generate_grid(form, filing),
         'real_filings': real_filings,
         'today': company.today,
         })
@@ -134,7 +136,7 @@ def _display_month(filing):
     """
     return (filing.due_date - Interval(days=5)).replace(day=1)
 
-def _generate_grid(filing):
+def _generate_grid(form, filing):
     """Convert a form's `grid` string into a table structure.
 
     This logic is tightly coupled with the for loops that it feeds,
@@ -159,7 +161,7 @@ def _generate_grid(filing):
             yield name, datum, colspan
 
     for page in filing.pages:
-        grid = filing.form.grids[page.number]
+        grid = form.grids[page.number]
         for line in grid.splitlines():
             if not line.strip():
                 continue

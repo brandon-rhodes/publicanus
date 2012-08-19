@@ -28,12 +28,12 @@
     <td>{% if row.employee_cost %}$ {{ row.employee_cost }}{% endif %}</td>
     <td>{% if row.consultant_cost %}$ {{ row.consultant_cost }}{% endif %}</td>
     <td>
-      {% for filing in row.filings %}
+      {% for form, filing in row.filings %}
       <span class="filing tipped">
         <a href="{{ filing|href }}"
-           class="{{ filing.state }}">{{ filing.form.name }}</a>
+           class="{{ filing.state }}">{{ filing.name }}</a>
         <span>
-          <span class="title">{{ filing.form.title }}</span>
+          <span class="title">{{ form.title }}</span>
           {% if filing.balance_due %}
           $ <b>{{ filing.balance_due }}</b> 
           {% else %}

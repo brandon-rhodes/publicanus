@@ -15,7 +15,7 @@ def filter_filings(seq, form=None, period=None):
                              and f.name == form.name)
 
     if period is not None:
-        seq = (f for f in seq if f.period == unicode(period))
+        seq = (f for f in seq if f.period_name == period.name)
 
     return seq
 

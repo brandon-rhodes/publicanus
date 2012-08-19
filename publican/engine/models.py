@@ -25,7 +25,7 @@ class Filing(filings.Filing, models.Model):
     filer = models.ForeignKey('Account', related_name='filings')
     region = models.CharField(max_length=12)
     name = models.CharField(max_length=12)
-    period = models.CharField(max_length=12)
+    period_name = models.CharField(max_length=12)
     date = models.DateField()
 
 
@@ -73,7 +73,7 @@ class Company(company.Company):
             q &= Q(region=form.region, name=form.name)
 
         if period is not None:
-            q &= Q(period=unicode(period))
+            q &= Q(period_name=period.name)
 
         return list(Filing.objects.filter(q))
 

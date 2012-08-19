@@ -6,7 +6,6 @@ from publican.engine.company import Company
 from publican.engine.filings import Filing
 from publican.engine.kit import Date, Quarter, Year
 from publican.engine.types import Account, Transaction
-from publican.forms.registry import get_form
 
 
 def build_sample(Account, Company, Filing, Transaction, assign_fake_ids=True):
@@ -19,13 +18,11 @@ def build_sample(Account, Company, Filing, Transaction, assign_fake_ids=True):
         return thing
 
     def F(filer, region, name, period, date):
-        form = get_form(region, name)
         f = Filing()
         f.filer = filer
         f.region = region
         f.name = name
-        f.form = form
-        f.period = period
+        f.period_name = period.name
         f.date = date
         return f
 
