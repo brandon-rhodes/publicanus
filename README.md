@@ -21,8 +21,11 @@ There were three main ideas that I wanted this prototype to illustrate.
   a view that lets me step back and look at the big picture
   of what tax obligations are approaching
   and what I will need to do to satisfy them.
+  Of course, in the vision, there are more than two supported tax forms;
+  but at least this prototype let me assemble all of the working pieces
+  for the first time!
 
-* The interface that tax form code uses to traverse business data
+* The interface that tax-form code uses to traverse business data
   was another major focus of attention.
   The last thing I want
   is to burden the authors of future Publican tax-form modules
@@ -35,27 +38,26 @@ There were three main ideas that I wanted this prototype to illustrate.
   you will note,
   if you review the Python code
   for [Form 940](https://github.com/brandon-rhodes/publicanus/blob/master/publican/forms/us/form_940.py)
-  and [Form 941](https://github.com/brandon-rhodes/publicanus/blob/master/publican/forms/us/form_941.py)
-  that I have mocked up,
+  and [Form 941](https://github.com/brandon-rhodes/publicanus/blob/master/publican/forms/us/form_941.py),
   that the interface is *completely* functional,
   and persists no state at all between calls.
   Tax form modules do not even define any classes;
   they simply define functions, along with a few data structures
   to support HTML and PDF rendering!
 
-* The most exciting stunt, I suppose, was the code in `documents.py`
-  that fills out and renders PDF tax forms,
-  and it really surprised me that my scheme worked on its first try
+* The most exciting stunt that I had been looking forward to
+  was filling out and rendering the PDF tax forms themselves.
+  It really surprised me that my scheme worked, on its first try,
   without any complaint.
   Some day the process might fall over
   if we try giving it some obscure state tax form
   produced by a poor PDF export program,
   but for federal forms it is a staggeringly clean process.
-  The trick is that it took two separate PDF libraries
+  The trick is that it took *two* separate PDF libraries
   to make the process so elegant:
   ReportLab is the expert at *producing* PDF,
   but pyPdf is the king when it comes to *assembling* documents
-  out of pieces.
+  out of other pieces.
 
 You can run the project tests —
 which currently ignore the web interface
