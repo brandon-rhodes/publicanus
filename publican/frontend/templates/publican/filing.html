@@ -37,7 +37,13 @@
 </p>
 <p>
   <a data-url="/api/v1/filing/" data-json="{{ create_json }}"
-     class="button create-filing">I have now<br>filed this form</a>
+     class="button create-filing">
+    {% if real_filings %}
+    Record another<br>filing date
+    {% else %}
+    Record the date<br>that I filed
+    {% endif %}
+  </a>
 </p>
 {% if real_filings %}
 <p class="real-filings">
