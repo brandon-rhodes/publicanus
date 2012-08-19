@@ -3,6 +3,7 @@
 """
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models import Q
 from . import company
 from . import filings
 from . import types
@@ -83,16 +84,17 @@ class Company(company.Company):
                 self, within=within, debit_type=debit_type,
                 credit_type=credit_type)
 
-        q = Transaction.objects
+        q = Q(debit_account=self.account) | Q(credit_account=self.account)
 
         if within is not None:
             period = within
-            q = q.filter(date__gte=period.start, date__lte=period.end)
+            q &= Q(date__gte=period.start, date__lte=period.end)
 
         if debit_type is not None:
-            q = q.filter(debit_account__type=debit_type)
+            q &= Q(debit_account__type=debit_type)
 
         if credit_type is not None:
-            q = q.filter(credit_account__type=credit_type)
+            q &= Q(credit_account__type=credit_type)
 
-        return q.select_related('debit_account', 'credit_account')
+        return list(Transaction.objects.filter(q).select_related(
+            'debit_account', 'credit_account'))

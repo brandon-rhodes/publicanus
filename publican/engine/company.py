@@ -26,12 +26,13 @@ class Company(object):
     ein = u''
     name = u''
     incorporation_date = None
+    account = None
 
-    # These two attributes should be set to sequences of Filing and
-    # Transaction objects, either through a test manually setting them,
-    # or through a database load.  The `None` value is a safe default
-    # because it is not iterable, and so will cause the corresponding
-    # "filter" method to fail if not initialized.
+    # These two following attributes should be set to sequences of
+    # Filing and Transaction objects, either through a test manually
+    # setting them, or through a database load.  The `None` value is a
+    # safe default because it is not iterable, and so will cause the
+    # corresponding "filter" method to fail if not initialized.
 
     _filings = None
     _transactions = None
