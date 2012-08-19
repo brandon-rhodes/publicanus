@@ -13,20 +13,24 @@
   This form
   {% if today == filing.due_date %}is due today
   {% else %}{% if today < filing.due_date %}will be{% else %}was{% endif %}
-  due on {{ filing.due_date|date:"d E Y" }}{% endif %}
+  due on {{ filing.due_date|mydate:"d B Y" }}{% endif %}
   <br>
   {% if real_filings %}
   and you filed it
-  on {{ real_filings.0.date|date:"d E Y" }}
+  on {{ real_filings.0.date|mydate:"d B Y" }}
   <br>
   which was
   {% with offset=real_filings.0.offset %}
   {% if offset == 0 %}<span class="is-happy">right on time!</span>
   {% elif offset > 0 %}<span class="is-happy">{{ offset }} days early!</span>
-  {% else %}<span class="is-sad">-{{ offset }} days late</span>
+  {% else %}<span class="is-sad">{{ offset|abs }} days late.</span>
   {% endif %}
   {% endwith %}
   {% endif %}
+</p>
+<p>
+  <a class="button">Record a<br>new filing</a>
+  <a class="button" href="/">I'm done,<br>return home</a>
 </p>
 <p>
   Should you choose to fill out {{ form.name }} by hand,

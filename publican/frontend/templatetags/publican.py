@@ -8,6 +8,12 @@ from django.core.urlresolvers import reverse
 from ...engine.filings import Filing  # weird; only relative import works here
 
 register = template.Library()
+_abs = abs
+
+@register.filter
+def abs(value):
+    """Discard the sign of `value`."""
+    return _abs(value)
 
 
 @register.filter
@@ -34,3 +40,9 @@ def is_decimal(obj):
     """Decide whether the object is a Decimal value."""
 
     return isinstance(obj, Decimal)
+
+
+@register.filter
+def mydate(d, codes):
+    format = ' '.join('%' + letter for letter in codes.split())
+    return d.strftime(format).lstrip('0').replace(' 0', ' ')

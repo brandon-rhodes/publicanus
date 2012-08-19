@@ -83,6 +83,43 @@ footer {
     a { color: $black; }
 }
 
+/* Buttons appear in several contexts; here is how they look.  The name
+   might come across as a pun: it does not really mean "a button", it
+   means an "anchor button", or "<a> button". */
+
+@mixin abutton {
+    display: inline-block;
+    border: 1px solid $formedge;
+    @include border-radius(.3em, .3em);
+    padding: 0 .4em;
+    color: $black;
+    line-height: 1.2;
+    text-decoration: none;
+    &:hover {
+        background-color: $brilliant;
+        @include tipshadow;
+    }
+    &.late {
+        border-color: $red;
+        background-color: $redbg;
+    }
+    &.filed {
+        border-color: $green;
+        background-color: $greenbg;
+    }
+}
+
+/* Sometimes paragraphs have buttons inside. */
+
+p a.button {
+    @include abutton;
+    border-color: $green;
+    background-color: $greenbg;
+    font-size: 16px / 18px * 1em;
+    margin: 0 0.5em;
+    padding: .2em 1em;
+}
+
 /* The hgroup is for pages with both a heading <h1> and subheading <h2>. */
 
 hgroup {
@@ -127,26 +164,8 @@ hgroup {
     td:nth-child(6) { text-align: right; font-size: $smallnum; }
 
     a {
-        display: inline-block;
-        border: 1px solid $formedge;
-        @include border-radius(.3em, .3em);
+        @include abutton;
         background-color: $formbg;
-        padding: 0 .4em;
-        color: $black;
-        line-height: 1.2;
-        text-decoration: none;
-        &:hover {
-            background-color: $brilliant;
-            @include tipshadow;
-        }
-        &.late {
-            border-color: $red;
-            background-color: $redbg;
-        }
-        &.filed {
-            border-color: $green;
-            background-color: $greenbg;
-        }
     }
 
     /* Tooltip shows a tax-form summary. */

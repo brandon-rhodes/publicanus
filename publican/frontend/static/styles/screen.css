@@ -524,6 +524,41 @@ footer a {
   color: #332a19;
 }
 
+/* Buttons appear in several contexts; here is how they look.  The name
+   might come across as a pun: it does not really mean "a button", it
+   means an "anchor button", or "<a> button". */
+/* Sometimes paragraphs have buttons inside. */
+p a.button {
+  display: inline-block;
+  border: 1px solid #eebe11;
+  -webkit-border-radius: 0.3em 0.3em;
+  -moz-border-radius: 0.3em / 0.3em;
+  border-radius: 0.3em / 0.3em;
+  padding: 0 .4em;
+  color: #332a19;
+  line-height: 1.2;
+  text-decoration: none;
+  border-color: #c7cc33;
+  background-color: #f8f9ec;
+  font-size: 0.88889em;
+  margin: 0 0.5em;
+  padding: .2em 1em;
+}
+p a.button:hover {
+  background-color: white;
+  -webkit-box-shadow: 0 1px 7px black;
+  -moz-box-shadow: 0 1px 7px black;
+  box-shadow: 0 1px 7px black;
+}
+p a.button.late {
+  border-color: #f63409;
+  background-color: #fdece8;
+}
+p a.button.filed {
+  border-color: #c7cc33;
+  background-color: #f8f9ec;
+}
+
 /* The hgroup is for pages with both a heading <h1> and subheading <h2>. */
 hgroup {
   margin-bottom: 3em;
@@ -597,11 +632,11 @@ hgroup h1 {
   -webkit-border-radius: 0.3em 0.3em;
   -moz-border-radius: 0.3em / 0.3em;
   border-radius: 0.3em / 0.3em;
-  background-color: #fcf8e8;
   padding: 0 .4em;
   color: #332a19;
   line-height: 1.2;
   text-decoration: none;
+  background-color: #fcf8e8;
 }
 .main-timeline a:hover {
   background-color: white;
