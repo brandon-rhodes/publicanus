@@ -5,7 +5,6 @@ from django.http import Http404
 from django.shortcuts import render_to_response
 
 from publican.engine.kit import Interval, Month, dollars, cents, get_period
-#from publican.engine.tests.sample import company
 from publican.forms import registry
 
 
@@ -100,11 +99,12 @@ def filing(request, region, name, period_name):
 
 def _get_company(request):
     """Return a `Company` facade for the current user's data."""
+    if False:
+        from publican.engine.tests.sample import company
+        return company
     from ..engine.models import CompanyUser, Company
     cu = CompanyUser.objects.get(user=request.user)
-    print cu
     account = cu.company
-    print account
     return Company(account)
 
 def _display_month(filing):

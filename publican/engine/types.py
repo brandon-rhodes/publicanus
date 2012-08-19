@@ -29,6 +29,8 @@ Two things happen to these classes in other code:
    saved for real when the application is up and running.
 
 """
+from .kit import zero
+
 class Account(object):
     """An account in our system of double-entry bookkeeping.
 
@@ -51,10 +53,8 @@ class Transaction(object):
     "invoice #24" or "for rebuilding my model classes".
 
     """
-    def __init__(self, date, debit_account, credit_account, amount,
-                 comment=''):
-        self.date = date
-        self.debit_account = debit_account
-        self.credit_account = credit_account
-        self.amount = amount
-        self.comment = comment
+    date = None
+    debit_account = None
+    credit_account = None
+    amount = zero
+    comment = u''

@@ -12,18 +12,17 @@ from publican.forms.registry import get_form
 def build_company():
     """Create a sample `Company` with pre-loaded test data."""
 
-    def A(type):
-        a = Account()
-        a.type = type
-        return a
+    def make(cls, **kw):
+        thing = cls()
+        for k, v in kw.iteritems():
+            setattr(thing, k, v)
+        return thing
 
     def F(region, name, period, date):
         form = get_form(region, name)
         f = Filing(form, period)
         f.date = date
         return f
-
-    T = Transaction
 
     b = Company(
         ein='38-0218963',
@@ -32,12 +31,11 @@ def build_company():
         )
 
     b.today = Date(2012, 8, 20)  # override, so tests are predictable!
-    print b.today
 
-    business = A('business')
-    alice = A('employee')
-    bob = A('employee')
-    carol = A('consultant')
+    business = make(Account, type='business')
+    alice = make(Account, type='employee')
+    bob = make(Account, type='employee')
+    carol = make(Account, type='consultant')
 
     business.id, alice.id, bob.id, carol.id = range(4)
 
@@ -48,18 +46,29 @@ def build_company():
         F('us', '941', Quarter(2012, 1), Date(2012, 4, 15)),
         ]
 
+    T = Transaction
+
     b._transactions = [
-        T(Date(2011, 11, 29), business, alice, Decimal(1400)),
-        T(Date(2011, 12, 29), business, alice, Decimal(2200)),
+        make(T, date=Date(2011, 11, 29), debit_account=business,
+             credit_account=alice, amount=Decimal(1400)),
+        make(T, date=Date(2011, 12, 29), debit_account=business,
+             credit_account=alice, amount=Decimal(2200)),
 
-        T(Date(2012, 1, 29), business, alice, Decimal(2200)),
-        T(Date(2012, 1, 29), business, bob, Decimal(900)),
-        T(Date(2012, 1, 29), bob, business, Decimal(99)), # reimbursement
-        T(Date(2012, 2, 29), business, carol, Decimal(1000)),
-        T(Date(2012, 2, 29), business, alice, Decimal(2200)),
-        T(Date(2012, 3, 29), business, alice, Decimal(2200)),
+        make(T, date=Date(2012, 1, 29), debit_account=business,
+             credit_account=alice, amount=Decimal(2200)),
+        make(T, date=Date(2012, 1, 29), debit_account=business,
+             credit_account=bob, amount=Decimal(900)),
+        make(T, date=Date(2012, 1, 29), debit_account=bob,
+             credit_account=business, amount=Decimal(99)), # reimbursement
+        make(T, date=Date(2012, 2, 29), debit_account=business,
+             credit_account=carol, amount=Decimal(1000)),
+        make(T, date=Date(2012, 2, 29), debit_account=business,
+             credit_account=alice, amount=Decimal(2200)),
+        make(T, date=Date(2012, 3, 29), debit_account=business,
+             credit_account=alice, amount=Decimal(2200)),
 
-        T(Date(2012, 4, 29), business, alice, Decimal(2200)),
+        make(T, date=Date(2012, 4, 29), debit_account=business,
+             credit_account=alice, amount=Decimal(2200)),
         ]
 
     return b

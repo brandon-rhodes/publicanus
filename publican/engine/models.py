@@ -24,9 +24,6 @@ class Transaction(types.Transaction, models.Model):
     amount = models.DecimalField(max_digits=20, decimal_places=2)
     comment = models.TextField(blank=True)
 
-    def __init__(self, *args, **kw):
-        models.Model.__init__(self, *args, **kw)
-
 
 class Company(company.Company):
     ein='38-0218963'
