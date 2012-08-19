@@ -36,6 +36,8 @@
   {% endif %}
 </p>
 <p>
+  <a href="{% url pdf form.region form.name filing.period_name %}"
+     class="button">Generate<br>PDF</a>
   <a data-url="/api/v1/filing/" data-json="{{ create_json }}"
      class="button create-filing">
     {% if real_filings %}
