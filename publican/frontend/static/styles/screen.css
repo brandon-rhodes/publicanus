@@ -573,10 +573,10 @@ a.button:hover {
 hgroup {
   margin-bottom: 3em;
   font-family: "Open Sans Condensed", Arial, sans-serif;
-  line-height: 1;
+  line-height: 1.2;
 }
 hgroup h1 {
-  font-size: 3em;
+  font-size: 2.9em;
 }
 
 /* Universal styles all have hyphens in their name. */

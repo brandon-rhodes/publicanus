@@ -1,0 +1,38 @@
+{% extends "publican/_design.html" %}
+
+{% block title %}Welcome to Publican{% endblock %}
+
+{% block body %}
+<hgroup>
+  <h1>Welcome to Publican</h1>
+  <h2>Helping you bear the tedium<br>of small-business paperwork</h2>
+</hgroup>
+
+<p>
+  <a class="button" href="/create_demo_account/?next={{ url }}"
+     >Enter the demo!</a>
+  <br>
+  <span class="action-nudge">
+    Click to explore with a temporary account
+  </span>
+</p>
+
+<p>
+  Do you run a <b>small consultancy</b>,
+  standing astride its modest stream of income
+  as you write checks for your small team
+  of <b>employees</b> and <b>consultants</b>?
+</p>
+<p>
+  Do you despair of ever getting straight
+  about who needs <b>W-2</b>’s, who needs <b>1099-MISC</b>’s,
+  and how you will file withholding on their behalf?
+</p>
+<p>
+  — <i>Be not afraid</i> —
+</p>
+<p>
+  <b>Publican is here to help</b>
+</p>
+
+{% endblock %}

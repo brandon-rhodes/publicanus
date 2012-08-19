@@ -1,5 +1,6 @@
 from collections import defaultdict
 
+from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.shortcuts import render_to_response
 
@@ -12,6 +13,7 @@ class Row(object):
     """Throwaway class for the table rows we build for the template."""
 
 
+@login_required
 def index(request):
 
     transactions = company.transactions
@@ -69,6 +71,13 @@ def index(request):
         })
 
 
+def login(request):
+    """For the purposes of this demo, offer one-click account creation."""
+    url = request.GET.get('next', '/')
+    return render_to_response('publican/login.html', {'url': url})
+
+
+@login_required
 def filing(request, region, name, period_name):
     form = registry.get_form(region, name)
     period = get_period(period_name, None)
