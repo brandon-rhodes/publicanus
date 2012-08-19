@@ -39,9 +39,11 @@
   <a data-url="/api/v1/filing/" data-json="{{ create_json }}"
      class="button create-filing">
     {% if real_filings %}
-    Record another<br>filing date
+      Record another<br>filing date
+    {% elif today < filing.due_date %}
+      Record that I<br>filed early
     {% else %}
-    Record the date<br>that I filed
+      Record the date<br>that I filed
     {% endif %}
   </a>
 </p>
