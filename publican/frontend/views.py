@@ -82,8 +82,24 @@ def ledger(request):
     company = request.company
     company.preload_transactions()
 
+    transactions = company.transactions()
+    transactions.sort(key=lambda t: t.date)
+
+    date = None
+    rows = []
+    for transaction in transactions:
+        row = Row()
+
+        row.transaction = transaction
+        row.is_new_year = (date is None or transaction.date.year != date.year)
+        row.is_new_date = (transaction.date != date)
+        date = transaction.date
+
+        rows.append(row)
+
     return render_to_response('publican/ledger.html', {
         'today': company.today,
+        'rows': rows,
         })
 
 

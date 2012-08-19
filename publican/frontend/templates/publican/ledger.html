@@ -16,12 +16,23 @@
 <table class="main-timeline">
   <tr>
     <th>
-    <th>
-    <th>Who
-    <th>Activity
+    <th>When
+    <th>From
+    <th>To
+    <th>Comment
     <th>Payment
   </tr>
   {% for row in rows %}
+  {% with t=row.transaction %}
+  <tr>
+    <td>{% if row.is_new_year %}{{ t.date|mydate:"Y" }}{% endif %}
+    <td>{% if row.is_new_date %}{{ t.date|mydate:"b d" }}{% else %}"{% endif %}
+    <td>{{ t.debit_account_id }}
+    <td>{{ t.credit_account_id }}
+    <td>{{ t.comment }}
+    <td>{{ t.amount }}
+  </tr>
+  {% endwith %}
   {% endfor %}
 </table>
 
