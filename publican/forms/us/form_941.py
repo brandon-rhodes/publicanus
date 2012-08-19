@@ -51,9 +51,9 @@ def tally(company, period, filing):
     p.line5d = p.line5a2 + p.line5b2 + p.line5c2
     p.line5e = zero
 
-    p.line6e = p.line3 + p.line5d + p.line5e
+    p.line6 = p.line3 + p.line5d + p.line5e
 
-    p.line10 = p.line6e
+    p.line10 = p.line6
 
     p.line14 = p.line10
 
@@ -81,11 +81,26 @@ grids = {
   line5c1 line5c2
   x x line5d
   x x line5e
-  x x line6e
+  x x line6
   x x line10
   x x line14
   """,
  }
 
+stride = 18
+
 pdf_fields = [
+ (140,688, 'name'),
+ (158,712, 'ein', 24),
+ (460,552, 'line1'),
+ (460,552 - stride, 'line2'),
+ (460,552 - 2 * stride, 'line3'),
+ (212,462, 'line5a1'), (350,462, 'line5a2'),
+ (212,462 - stride, 'line5b1'), (350,462 - stride, 'line5b2'),
+ (212,462 - 2 * stride, 'line5c1'), (350,462 - 2 * stride, 'line5c2'),
+ (460,402, 'line5d'),
+ (460,402 - stride, 'line5e'),
+ (460,402 - 2 * stride, 'line6'),
+ (460,402 - 6 * stride, 'line10'),
+ (460,192, 'line14'),
  ]
