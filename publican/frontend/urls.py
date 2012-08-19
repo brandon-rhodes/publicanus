@@ -1,9 +1,10 @@
 from django.conf.urls import patterns, url
 
 urlpatterns = patterns(
-    'publican.frontend.views',
-    url(r'^$', 'index'),
-    url(r'^accounts/login/$', 'login'),
-    url(r'^accounts/create_demo/$', 'create_demo'),
-    url(r'^(\w+)/(\w+)/([-\w]+)/$', 'filing', name='filing'),
+    'publican.frontend',
+    url(r'^$', 'views.index'),
+    url(r'^accounts/login/$', 'demo.welcome_page'),
+    url(r'^accounts/create_demo/$', 'demo.create_demo'),
+    url(r'^(\w+)/(\w+)/([-\w]+)/$', 'views.filing',
+        name='filing'),
     )
