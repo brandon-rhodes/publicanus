@@ -44,17 +44,23 @@
         <span>
           <span class="title">{{ form.title }}</span>
           {% if filing.balance_due %}
-          $ <b>{{ filing.balance_due }}</b> 
+            $ <b>{{ filing.balance_due }}</b> 
           {% else %}
-          $ <b>0</b> 
+            $ <b>0</b> 
           {% endif %}
-          {% if filing.due_date < today %}was{% else %}is{% endif %} due on
+          {% if filing.due_date < today %}was{% else %}is{% endif %}
+          due on
           <b>{{ filing.due_date|date:"M d" }}</b>
           {% if filing.state == "filed" %}
-          <br>Filed on
-          <b>{{ filing.real_filings.0.date|date:"M d" }}</b>
+            <br>
+            {% if filing.due_date < filing.real_filings.0.date %}
+              Filed <b class="is-sad">late</b> on
+            {% else %}
+              Filed on
+            {% endif %}
+            {{ filing.real_filings.0.date|date:"M d" }}
           {% elif filing.due_date < today %}
-          <br><b class="is-sad">This form is late</b>
+            <br><b class="is-sad">This form is late</b>
           {% endif %}
           <span class="action-nudge">Click to open</span>
         </span>
