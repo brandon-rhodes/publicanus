@@ -19,7 +19,7 @@ class CompanyMiddleware(object):
 
         # Find the Account object that represents this user business.
 
-        if request.user.is_authenticated() is not None:
+        if request.user.is_authenticated():
             user = request.user
             cu = CompanyUser.objects.select_related('company').get(user=user)
             account = cu.company
