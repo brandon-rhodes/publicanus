@@ -223,6 +223,15 @@ hgroup {
     }
 }
 
+/* Operations that can be performed on the Filing page. */
+
+.button.delete-filing {
+    border-color: $red;
+    background-color: $redbg;
+    &:hover { background-color: $redbg; }
+    :last-child { padding: .2em; }
+}
+
 /* A tooltip is the final element inside a <div class="tipped"> */
 
 .tipped {

@@ -33,16 +33,17 @@
   <a class="button" href="/">I'm done,<br>return home</a>
 </p>
 {% if real_filings %}
-<ul class="filing_list">
+<p>
   {% for real_filing in real_filings %}
-  <li>
     You {% if not forloop.first %}re-{% endif %}filed
     on {{ real_filing.date|mydate:"d B Y" }}
-    <a class="button delete-filing"
-       data-url="/api/v1/filing/{{ real_filing.id }}/">×</a>
+    <a class="button delete-filing tipped"
+       data-url="/api/v1/filing/{{ real_filing.id }}/">×<span>
+        Actually, I didn't
+    </span></a>
     {% if not forloop.last %}<br>{% endif %}
-    {% endfor %}
-</ul>
+  {% endfor %}
+</p>
 {% endif %}
 <p>
   Should you choose to fill out {{ form.name }} by hand,

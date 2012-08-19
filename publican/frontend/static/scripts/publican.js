@@ -3,7 +3,6 @@
 $(document).ready(function() {
 
     var reload_page = function() {
-        console('go!');
         location.reload();
     };
 
