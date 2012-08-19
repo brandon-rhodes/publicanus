@@ -209,6 +209,13 @@ hgroup {
     }
 }
 
+/* This table lives on the Ledger page. */
+
+.ledger-table {
+    td:nth-child(2) { text-align: center; font-size: $smallnum; }
+    td:nth-child(3) { color: $lighttext; }
+}
+
 /* This table, from the Filing page, displays the values in a particular
    form as filed on a particular date. */
 

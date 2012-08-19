@@ -80,6 +80,8 @@ def build_sample(Account, Company, Filing, Transaction, assign_fake_ids=True):
     add(date=Date(2012, 2, 1), debit_account=business,
         credit_account=carol, amount=Decimal('1452'))
     add(date=Date(2012, 3, 1), debit_account=business,
+        credit_account=carol, amount=Decimal('1000'))
+    add(date=Date(2012, 3, 7), debit_account=business,
         credit_account=carol, amount=Decimal('821'))
     add(date=Date(2012, 5, 1), debit_account=business,
         credit_account=carol, amount=Decimal('1396'))
