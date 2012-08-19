@@ -5,21 +5,8 @@ from decimal import Decimal
 
 from publican.engine.filings import Filing
 from publican.engine.kit import Quarter, Year
-from publican.engine.types import Account
+from publican.engine.types import Account, Transaction
 from publican.forms.registry import get_form
-
-
-class SampleTransaction(object):
-    def __init__(self, date, debit_from, credit_to, amount, comment=''):
-        self.id = id(self)
-        self.date = date
-        self.debit_from = debit_from
-        self.credit_to = credit_to
-        self.amount = amount
-        self.comment = comment
-
-    def __repr__(self):
-        return '<Transaction ${}>'.format(self.amount)
 
 
 def filter_filings(filings, **kw):
@@ -47,16 +34,14 @@ def filter_transactions(transactions, **kw):
 
     debit_type = kw.pop('debit_type', None)
     if debit_type is not None:
-        tt = (t for t in tt if t.debit_from.type == debit_type)
+        tt = (t for t in tt if t.debit_account.type == debit_type)
 
     credit_type = kw.pop('credit_type', None)
     if credit_type is not None:
-        tt = (t for t in tt if t.credit_to.type == credit_type)
+        tt = (t for t in tt if t.credit_account.type == credit_type)
 
     return tt
 
-
-T = SampleTransaction
 
 class Company(object):
 
@@ -65,6 +50,8 @@ class Company(object):
         f = Filing(form, period)
         f.date = date
         return f
+
+    T = Transaction
 
     ein = '38-0218963'
     name = 'Crazy R Software'
@@ -103,5 +90,6 @@ class Company(object):
     def transactions(self, **kw):
         return filter_transactions(self._transactions, **kw)
 
+    del F, T
 
 company = Company()

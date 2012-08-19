@@ -22,7 +22,7 @@ def tally(company, period, filing):
         debit_type='business',
         credit_type='employee',
         ))
-    number_of_employees = len(set(t.credit_to.id for t in tlist))
+    number_of_employees = len(set(t.credit_account.id for t in tlist))
     wages = sum(t.amount for t in tlist) or zero  # "or zero" keeps it Decimal
 
     p = filing.new_page(1)

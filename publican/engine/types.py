@@ -44,3 +44,22 @@ class Account(object):
         assert type in self.TYPES
         self.id = id(self)
         self.type = type
+
+
+class Transaction(object):
+    """Transfer of money between accounts in our double-entry bookkeeping.
+
+    Specifies a particular `date` on which an `amount` of money was
+    removed from `debit_account` and placed in `credit_account`.  There
+    is also a free-form `comment` field where users can put notes like
+    "invoice #24" or "for rebuilding my model classes".
+
+    """
+    def __init__(self, date, debit_account, credit_account, amount,
+                 comment=''):
+        self.id = id(self)
+        self.date = date
+        self.debit_account = debit_account
+        self.credit_account = credit_account
+        self.amount = amount
+        self.comment = comment
