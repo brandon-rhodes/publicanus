@@ -538,11 +538,11 @@ p a.button {
   color: #332a19;
   line-height: 1.2;
   text-decoration: none;
-  border-color: #c7cc33;
-  background-color: #f8f9ec;
   font-size: 0.88889em;
   margin: 0 0.5em;
   padding: .2em 1em;
+  border-color: #c7cc33;
+  background-color: #c7cc33;
 }
 p a.button:hover {
   background-color: white;
@@ -557,6 +557,9 @@ p a.button.late {
 p a.button.filed {
   border-color: #c7cc33;
   background-color: #f8f9ec;
+}
+p a.button:hover {
+  background-color: #d8db70;
 }
 
 /* The hgroup is for pages with both a heading <h1> and subheading <h2>. */
