@@ -78,6 +78,16 @@ def index(request):
 
 
 @login_required
+def ledger(request):
+    company = request.company
+    company.preload_transactions()
+
+    return render_to_response('publican/ledger.html', {
+        'today': company.today,
+        })
+
+
+@login_required
 def filing(request, region, name, period_name):
     company = request.company
     form = registry.get_form(region, name)
