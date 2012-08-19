@@ -44,9 +44,10 @@ class Year(Period):
         self.number = number
         self.start = Date(number, 1, 1)
         self.end = Date(number, 12, 31)
+        self.name = unicode(number)
 
     def __unicode__(self):
-        return u'{}'.format(self.number)
+        return self.name
 
     def next(self):
         return Year(self.number + 1)
@@ -58,18 +59,16 @@ class Month(Period):
         self.start = Date(year, number, 1)
         bump = (number == 2) and isleap(year)
         self.end = Date(year, number, mdays[number] + bump)
+        self.name = u'{}-{:02}'.format(year, number)
 
 class Quarter(Period):
     def __init__(self, year, number):
         self.year = year
         self.number = number
-
         month = number * 3
         self.start = Date(year, month - 2, 1)
         self.end = Date(year, month, mdays[month])  # works: month != Feb
-
-    def __unicode__(self):
-        return u'{}-Q{}'.format(self.year, self.number)
+        self.name = u'{}-Q{}'.format(self.year, self.number)
 
     def next(self):
         if self.number == 4:
