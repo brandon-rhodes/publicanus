@@ -36,7 +36,8 @@
   {% endif %}
 </p>
 <p>
-  <a class="button">Record a<br>new filing</a>
+  <a data-url="/api/v1/filing/" data-json="{{ create_json }}"
+     class="button create-filing">I have now<br>filed this form</a>
 </p>
 {% if real_filings %}
 <p>
