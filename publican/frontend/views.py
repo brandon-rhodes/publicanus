@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.shortcuts import render_to_response
 
+from publican.engine import models
 from publican.engine.kit import Interval, Month, dollars, cents, get_period
 from publican.forms import registry
 
@@ -85,12 +86,23 @@ def ledger(request):
     transactions = company.transactions()
     transactions.sort(key=lambda t: t.date)
 
+    account_ids = set( t.credit_account.id for t in transactions )
+    account_ids.union( t.debit_account.id for t in transactions )
+
+    account_names = {
+        na.account_id: na.name for na
+        in models.NameAddress.objects.filter(account_id__in=account_ids)
+        }
+
     date = None
     rows = []
     for transaction in transactions:
         row = Row()
 
         row.transaction = transaction
+        row.debit_name = 'Your business'
+        row.credit_name = account_names[transaction.credit_account_id]
+
         row.is_new_year = (date is None or transaction.date.year != date.year)
         row.is_new_date = (transaction.date != date)
         date = transaction.date

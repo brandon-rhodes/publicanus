@@ -26,9 +26,9 @@
   {% with t=row.transaction %}
   <tr>
     <td>{% if row.is_new_year %}{{ t.date|mydate:"Y" }}{% endif %}
-    <td>{% if row.is_new_date %}{{ t.date|mydate:"b d" }}{% else %}"{% endif %}
-    <td>{{ t.debit_account_id }}
-    <td>{{ t.credit_account_id }}
+    <td>{% if row.is_new_date %}{{ t.date|mydate:"b d" }}{% else %}—{% endif %}
+    <td>{{ row.debit_name }}
+    <td>{{ row.credit_name }}
     <td>{{ t.comment }}
     <td>{{ t.amount }}
   </tr>
@@ -37,7 +37,7 @@
 </table>
 
 <p>
-  (The table will support live editing once we reach beta.)
+  The table will support live editing once we reach beta.
 </p>
 
 {% endblock %}
