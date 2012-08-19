@@ -21,19 +21,34 @@ $(document).ready(function() {
         }
 
         var go = function(e) {
-            val = create_input.val();
+            var val = create_input.val();
             if (!/^[0-9]+\/[0-9]+\/[0-9]+/.test(val))
                 return;
             var url = $('.create-filing').attr('data-url');
-            var json = eval($('.create-filing').attr('data-json'));
-            console.log(json);
+            var json = $('.create-filing').attr('data-json');
+            var data = $.parseJSON(json);
+            console.log(data);
+            data.date = val;
+            console.log(data);
+            $.ajax({
+                url: 'http://localhost:8000/api/v1/filing/',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(data),
+                dataType: 'json',
+                processData: false,
+                success: function() {
+                    reload_page();
+                }
+            });
             create_input.hide();
         };
 
         create_input = $('<input>');
         $('.create-filing').parent().after(create_input);
         create_input.datepicker({
-            minDate: '1/1/1990', maxDate: '+1d', onSelect: go
+            minDate: '1/1/1990', maxDate: '+1d', onSelect: go,
+            appendText: '<br>When did you file?'
         });
         create_input.keypress(function(e) {
             if (e.which === 13)  // enter key

@@ -1,4 +1,5 @@
 from collections import defaultdict
+import json
 
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
@@ -83,6 +84,15 @@ def filing(request, region, name, period_name):
     period = get_period(period_name, None)
     if form is None or period is None:
         raise Http404
+
+    create_json = {
+        'filer': '/api/v1/account/{}/'.format(company.account.id),
+        'region': region,
+        'name': name,
+        'period_name': period_name,
+        'date': None,
+        }
+
     filing = form.tally(company, period)
     real_filings = sorted(company.filings(form=form, period=period),
                           key=lambda f: f.date)
@@ -98,6 +108,7 @@ def filing(request, region, name, period_name):
         'grid': _generate_grid(form, filing),
         'real_filings': real_filings,
         'today': company.today,
+        'create_json': json.dumps(create_json),
         })
 
 
