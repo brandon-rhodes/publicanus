@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.shortcuts import render_to_response
 
-from publican.engine.kit import Interval, Month, dollars, cents, get_period
+from publican.engine.kit import Date, Interval, Month, dollars, cents, get_period
 from publican.forms import registry
 
 
@@ -105,7 +105,10 @@ def _get_company(request):
     from ..engine.models import CompanyUser, Company
     cu = CompanyUser.objects.get(user=request.user)
     account = cu.company
-    return Company(account)
+    c = Company()
+    c.account = account
+    c.today = Date.today()
+    return c
 
 def _display_month(filing):
     """Decide in which month we will display a given filing.

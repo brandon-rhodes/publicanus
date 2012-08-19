@@ -23,10 +23,9 @@ from . import filtering
 class Company(object):
     """Entity that spends money on employees, consultants, and taxes."""
 
-    def __init__(self, ein, name, incorporation_date):
-        self.ein = ein
-        self.name = name
-        self.incorporation_date = incorporation_date
+    ein = u''
+    name = u''
+    incorporation_date = None
 
     # These two attributes should be set to sequences of Filing and
     # Transaction objects, either through a test manually setting them,

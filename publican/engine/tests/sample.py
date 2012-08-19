@@ -9,7 +9,7 @@ from publican.engine.types import Account, Transaction
 from publican.forms.registry import get_form
 
 
-def build_company():
+def build_sample(Account, Company, Filing, Transaction, assign_fake_ids=True):
     """Create a sample `Company` with pre-loaded test data."""
 
     def make(cls, **kw):
@@ -20,26 +20,32 @@ def build_company():
 
     def F(region, name, period, date):
         form = get_form(region, name)
-        f = Filing(form, period)
+        f = Filing()
+        f.region = region
+        f.name = name
+        f.form = form
+        f.period = period
         f.date = date
         return f
 
-    b = Company(
-        ein='38-0218963',
-        name='Crazy R Software',
-        incorporation_date=Date(2011, 8, 1)
-        )
+    c = Company()
+    c.ein = '38-0218963',
+    c.name = 'Crazy R Software',
+    c.incorporation_date = Date(2011, 8, 1)
 
-    b.today = Date(2012, 8, 20)  # override, so tests are predictable!
+    c.today = Date(2012, 8, 20)  # override, so tests are predictable!
 
     business = make(Account, type='business')
     alice = make(Account, type='employee')
     bob = make(Account, type='employee')
     carol = make(Account, type='consultant')
 
-    business.id, alice.id, bob.id, carol.id = range(4)
+    if assign_fake_ids:
+        business.id, alice.id, bob.id, carol.id = range(4)
 
-    b._filings = [
+    c._accounts = [business, alice, bob, carol]
+
+    c._filings = [
         F('us', '941', Quarter(2011, 3), Date(2011, 11, 5)),
         F('us', '940', Year(2011), Date(2012, 1, 20)),
         F('us', '941', Quarter(2011, 4), Date(2012, 1, 20)),
@@ -48,7 +54,7 @@ def build_company():
 
     T = Transaction
 
-    b._transactions = [
+    c._transactions = [
         make(T, date=Date(2011, 11, 29), debit_account=business,
              credit_account=alice, amount=Decimal(1400)),
         make(T, date=Date(2011, 12, 29), debit_account=business,
@@ -71,7 +77,7 @@ def build_company():
              credit_account=alice, amount=Decimal(2200)),
         ]
 
-    return b
+    return c
 
 
-company = build_company()
+company = build_sample(Account, Company, Filing, Transaction)

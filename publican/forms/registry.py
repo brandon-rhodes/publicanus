@@ -83,5 +83,8 @@ class Form(object):
         illustrating how the form should be filled out.
 
         """
-        filing = Filing(self, period)
+        filing = Filing()
+        filing.form = self
+        filing.period = period
+        filing.pages = []
         return self._module.tally(company, period, filing)

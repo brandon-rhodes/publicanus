@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import redirect, render_to_response
 
 from publican.engine import models
+from publican.engine.tests.sample import build_sample
 
 
 def welcome_page(request):
@@ -27,9 +28,22 @@ def create_demo(request):
     user = authenticate(username=name, password=pw)
     login(request, user)
 
-    a = models.Account()
-    a.type = 'business'
-    a.save()
+    # a = models.Account()
+    # a.type = 'business'
+    # a.save()
+
+    company = build_sample(models.Account, models.Company,
+                           models.Filing, models.Transaction,
+                           assign_fake_ids=False)
+
+    for f in company._filings:
+        f.save()
+    for a in company._accounts:
+        a.save()
+    for t in company._transactions:
+        t.credit_account = t.credit_account
+        t.debit_account = t.credit_account
+        t.save()
 
     cu = models.CompanyUser()
     cu.user = user
