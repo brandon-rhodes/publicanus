@@ -1,11 +1,10 @@
 """Sample company that lives in RAM, not tied to the database or models."""
 
-from datetime import date as Date
 from decimal import Decimal
 
 from publican.engine.company import Company
 from publican.engine.filings import Filing
-from publican.engine.kit import Quarter, Year
+from publican.engine.kit import Date, Quarter, Year
 from publican.engine.types import Account, Transaction
 from publican.forms.registry import get_form
 
@@ -37,9 +36,9 @@ def build_company():
 
     b._filings = [
         F('us', '941', Quarter(2011, 3), Date(2011, 11, 5)),
-        F('us', '940', Year(2011), Date(2011, 1, 20)),
-        F('us', '941', Quarter(2011, 4), Date(2011, 1, 20)),
-        F('us', '941', Quarter(2012, 1), Date(2011, 4, 15)),
+        F('us', '940', Year(2011), Date(2012, 1, 20)),
+        F('us', '941', Quarter(2011, 4), Date(2012, 1, 20)),
+        F('us', '941', Quarter(2012, 1), Date(2012, 4, 15)),
         ]
 
     b._transactions = [

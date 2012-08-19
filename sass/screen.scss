@@ -47,6 +47,8 @@ $smallnum: 16px / 18px * 1em;
    This first section styles the "big sections" of the page, and applies
    to all pages on the site. */
 
+$max_width: 32em;
+
 body {
     background-color: $white;
     color: $black;
@@ -58,15 +60,15 @@ body {
 body > div {
     margin-left: auto;
     margin-right: auto;
-    max-width: 40em;
+    max-width: $max_width;
 }
 body > table {
     margin-left: auto;
     margin-right: auto;
 }
 body > p {
-    margin: 2em auto;
-    max-width: 40em;
+    margin: 1.2em auto;
+    max-width: $max_width * 2 / 3;
     color: $lighttext;
 }
 
@@ -96,6 +98,12 @@ hgroup {
     font-family: Georgia, serif;
     font-size: 12px / 18px * 1em;
     font-style: italic;
+    color: $yellowtext;
+}
+.is-happy {
+    color: $greentext;
+}
+.is-sad {
     color: $yellowtext;
 }
 

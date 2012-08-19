@@ -75,10 +75,19 @@ def filing(request, region, name, period_name):
     if form is None or period is None:
         raise Http404
     filing = form.tally(company, period)
+    real_filings = sorted(company.filings(form=form, period=period),
+                          key=lambda f: f.date)
+
+    # How close to on-time was the initial filing?
+
+    if real_filings:
+        real_filings[0].offset = (filing.due_date - real_filings[0].date).days
+
     return render_to_response('publican/filing.html', {
         'filing': filing,
         'form': form,
         'grid': generate_grid(filing),
+        'real_filings': real_filings,
         'today': company.today,
         })
 
@@ -88,7 +97,7 @@ def filing(request, region, name, period_name):
 def _display_month(filing):
     """Decide in which month we will display a given filing.
 
-    Sometimes a form that one thinks of a "due at the end of July" is
+    Sometimes a form that one thinks of as "due at the end of July" is
     actually due on August 1st or 2nd because July 31st happens to fall
     on a weekend.  It would be unreasonable to display such a form in
     the interface as an "August" form, so we display such forms "early"
