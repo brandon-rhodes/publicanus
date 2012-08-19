@@ -5,7 +5,7 @@ from django.http import Http404
 from django.shortcuts import render_to_response
 
 from publican.engine.kit import Interval, Month, dollars, cents, get_period
-from publican.engine.tests.sample import company
+#from publican.engine.tests.sample import company
 from publican.forms import registry
 
 
@@ -15,7 +15,7 @@ class Row(object):
 
 @login_required
 def index(request):
-
+    company = _get_company(request)
     transactions = company.transactions
     filings_by_month = defaultdict(list)
 
@@ -73,6 +73,7 @@ def index(request):
 
 @login_required
 def filing(request, region, name, period_name):
+    company = _get_company(request)
     form = registry.get_form(region, name)
     period = get_period(period_name, None)
     if form is None or period is None:
@@ -89,13 +90,22 @@ def filing(request, region, name, period_name):
     return render_to_response('publican/filing.html', {
         'filing': filing,
         'form': form,
-        'grid': generate_grid(filing),
+        'grid': _generate_grid(filing),
         'real_filings': real_filings,
         'today': company.today,
         })
 
 
 # Helpful functions.
+
+def _get_company(request):
+    """Return a `Company` facade for the current user's data."""
+    from ..engine.models import CompanyUser, Company
+    cu = CompanyUser.objects.get(user=request.user)
+    print cu
+    account = cu.company
+    print account
+    return Company(account)
 
 def _display_month(filing):
     """Decide in which month we will display a given filing.
@@ -109,7 +119,7 @@ def _display_month(filing):
     """
     return (filing.due_date - Interval(days=5)).replace(day=1)
 
-def generate_grid(filing):
+def _generate_grid(filing):
     """Convert a form's `grid` string into a table structure.
 
     This logic is tightly coupled with the for loops that it feeds,

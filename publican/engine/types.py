@@ -41,7 +41,6 @@ class Account(object):
     TYPES = ('business', 'consultant', 'employee')
 
     def __init__(self, type):
-        super(Account, self).__init__()
         assert type in self.TYPES
         self.type = type
 
