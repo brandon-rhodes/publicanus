@@ -7,7 +7,14 @@
 <h1>Welcome!</h1>
 
 <table class="main-timeline">
-  <tr><th><th><th>Employees<th>Consultants<th>Tax forms<th>Tax</tr>
+  <tr>
+    <th>
+    <th>
+    <th>Employee<br>payroll
+    <th>Consultant<br>fees
+    <th>Tax<br>forms
+    <th>Tax<br>liability
+  </tr>
   {% for row in rows  %}
   <tr{% if row.date == this_month %} class="current"{% endif %}>
     <td>

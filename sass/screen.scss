@@ -105,7 +105,11 @@ hgroup {
     margin: 2em auto;
     tr:nth-child(2n) { background-color: $highlight; }
     tr.current { background-color: $highlightbg; }
-    th { padding: 1em .5em; font-size: 12px / 16px * 1em; }
+    th {
+        padding: 1em .5em;
+        font-size: 12px / 16px * 1em;
+        line-height: 1;
+    }
     td { padding: 0 .4em; }
     td:first-child { font-weight: bold; }
     td:nth-child(2) { text-align: left; border-right: 1px solid $black; }
