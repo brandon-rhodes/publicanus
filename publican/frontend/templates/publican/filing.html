@@ -45,7 +45,7 @@
     on {{ real_filing.date|mydate:"d B Y" }}
     <a class="button delete-filing tipped"
        data-url="/api/v1/filing/{{ real_filing.id }}/">×<span>
-        Actually, I didn't
+        Remove
     </span></a>
     {% if not forloop.last %}<br>{% endif %}
   {% endfor %}
