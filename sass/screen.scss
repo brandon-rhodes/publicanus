@@ -68,6 +68,13 @@ body > table {
     margin-left: auto;
     margin-right: auto;
 }
+body > ul {
+    margin: 1.2em auto;
+    max-width: $max_width * 2 / 3;
+    li {
+        text-align: left;
+    }
+}
 body > p {
     margin: 1.2em auto;
     max-width: $max_width * 2 / 3;
@@ -93,7 +100,6 @@ footer {
     display: inline-block;
     border: 1px solid $formedge;
     @include border-radius(.3em, .3em);
-    padding: 0 .4em;
     color: $black;
     line-height: 1.2;
     text-decoration: none;
@@ -111,13 +117,13 @@ footer {
     }
 }
 
-/* Sometimes paragraphs have buttons inside. */
+/* Sometimes buttons appear in random places, and just get a class. */
 
-p a.button {
+a.button {
     @include abutton;
     font-size: 16px / 18px * 1em;
     margin: 0 0.5em;
-    padding: .2em 1em;
+    padding: .2em .5em;
 
     border-color: $green;
     background-color: $green;
@@ -170,6 +176,7 @@ hgroup {
     a {
         @include abutton;
         background-color: $formbg;
+        padding: 0 .4em;
     }
 
     /* Tooltip shows a tax-form summary. */
@@ -196,8 +203,8 @@ hgroup {
     }
 }
 
-/* This table displays the values in a particular form as filed on a
-   particular date. */
+/* This table, from the Filing page, displays the values in a particular
+   form as filed on a particular date. */
 
 .filing-table {
     th {
