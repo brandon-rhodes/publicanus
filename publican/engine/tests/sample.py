@@ -3,14 +3,15 @@
 from datetime import date as Date
 from decimal import Decimal
 
+from publican.engine.business import Business
 from publican.engine.filings import Filing
-from publican.engine.filtering import filter_filings, filter_transactions
 from publican.engine.kit import Quarter, Year
 from publican.engine.types import Account, Transaction
 from publican.forms.registry import get_form
 
 
-class Company(object):
+class Company(Business):
+    """A sample `Business` with pre-loaded test data."""
 
     def F(region, name, period, date):
         form = get_form(region, name)
@@ -49,13 +50,7 @@ class Company(object):
         T(Date(2012, 3, 29), business, alice, Decimal(2200)),
 
         T(Date(2012, 4, 29), business, alice, Decimal(2200)),
-       ]
-
-    def filings(self, **kw):
-        return filter_filings(self._filings, **kw)
-
-    def transactions(self, **kw):
-        return filter_transactions(self._transactions, **kw)
+        ]
 
     del F, T
 
