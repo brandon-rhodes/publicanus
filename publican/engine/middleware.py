@@ -6,7 +6,7 @@ from .models import CompanyUser, Company
 class CompanyMiddleware(object):
 
     def process_request(self, request):
-        """Return a `Company` facade for the current user's data."""
+        """Install a `Company` facade for the current user's data."""
 
         request.company = None
 
@@ -19,7 +19,7 @@ class CompanyMiddleware(object):
 
         # Find the Account object that represents this user business.
 
-        if request.user:
+        if request.user.is_authenticated() is not None:
             user = request.user
             cu = CompanyUser.objects.select_related('company').get(user=user)
             account = cu.company
