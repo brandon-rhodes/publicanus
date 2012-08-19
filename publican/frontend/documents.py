@@ -5,10 +5,11 @@ template-driven bread-and-butter views over in views.py.
 
 """
 import os
-from StringIO import StringIO
+from decimal import Decimal
 from django.http import Http404, HttpResponse
 from pyPdf import PdfFileWriter, PdfFileReader
 from reportlab.pdfgen import canvas
+from StringIO import StringIO
 
 from publican.engine.kit import get_period
 from publican.forms import registry
@@ -31,15 +32,18 @@ def pdf(request, region, name, period_name):
         value = getattr(filing.pages[0], name, None)
         if value is None:
             value = u''
-        else:
+        if isinstance(value, Decimal):
+            dollars, cents = unicode(value).split('.')
+            c.drawString(x - 8 - c.stringWidth(dollars), y, dollars)
+            c.drawString(x + 4, y, cents)
+        elif len(spec) > 3:
             value = unicode(value)
-        print repr(value)
-        if len(spec) == 3:
-            c.drawString(x, y, value)
-        else:
             step = spec[3]
             for i, char in enumerate(value):
                 c.drawString(x + i * step, y, char)
+        else:
+            value = unicode(value)
+            c.drawString(x, y, value)
 
     c.showPage()
 
