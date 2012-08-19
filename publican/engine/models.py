@@ -22,7 +22,7 @@ class Account(types.Account, models.Model):
 
 
 class Filing(filings.Filing, models.Model):
-    filer = models.ForeignKey('Account', related_name='filings')
+    filer = models.ForeignKey('Account', related_name='filings', db_index=True)
     region = models.CharField(max_length=12)
     name = models.CharField(max_length=12)
     period_name = models.CharField(max_length=12)
@@ -31,8 +31,10 @@ class Filing(filings.Filing, models.Model):
 
 class Transaction(types.Transaction, models.Model):
     date = models.DateField()
-    debit_account = models.ForeignKey('Account', related_name='debits')
-    credit_account = models.ForeignKey('Account', related_name='credits')
+    debit_account = models.ForeignKey(
+        'Account', related_name='debits', db_index=True)
+    credit_account = models.ForeignKey(
+        'Account', related_name='credits', db_index=True)
     amount = models.DecimalField(max_digits=20, decimal_places=2)
     comment = models.TextField(blank=True)
 
