@@ -518,6 +518,12 @@ body > p {
   color: #a2935d;
 }
 
+.return-home {
+  position: absolute;
+  top: 1em;
+  left: 1em;
+}
+
 h1 {
   font-family: "Open Sans Condensed", Arial, sans-serif;
 }

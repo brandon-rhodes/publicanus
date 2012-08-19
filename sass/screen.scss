@@ -80,6 +80,11 @@ body > p {
     color: $lighttext;
 }
 
+.return-home {
+    position: absolute;
+    top: 1em;
+    left: 1em;
+}
 h1 {
     font-family: $condensed;
 }

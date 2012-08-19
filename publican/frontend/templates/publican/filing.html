@@ -4,6 +4,8 @@
 {% block title %}Form {{ form.name }} for {{ filing.period_name }}{% endblock %}
 
 {% block body %}
+<div><a class="button return-home" href="/">← Home</a></div>
+
 <hgroup>
   <h1>{{ form.name }}</h1>
   <h2>{{ form.title }}<br>{{ filing.period_name }}</h2>
@@ -30,7 +32,6 @@
 </p>
 <p>
   <a class="button">Record a<br>new filing</a>
-  <a class="button" href="/">I'm done,<br>return home</a>
 </p>
 {% if real_filings %}
 <p>
