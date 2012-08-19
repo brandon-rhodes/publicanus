@@ -4,8 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.shortcuts import render_to_response
 
-from publican.engine.kit import (Date, Interval, Month,
-                                 dollars, cents, get_period)
+from publican.engine.kit import Interval, Month, dollars, cents, get_period
 from publican.forms import registry
 
 
@@ -15,7 +14,7 @@ class Row(object):
 
 @login_required
 def index(request):
-    company = _get_company(request)
+    company = request.company
     company.preload_filings()
     company.preload_transactions()
 
@@ -79,7 +78,7 @@ def index(request):
 
 @login_required
 def filing(request, region, name, period_name):
-    company = _get_company(request)
+    company = request.company
     form = registry.get_form(region, name)
     period = get_period(period_name, None)
     if form is None or period is None:
@@ -103,26 +102,6 @@ def filing(request, region, name, period_name):
 
 
 # Helpful functions.
-
-def _get_company(request):
-    """Return a `Company` facade for the current user's data."""
-    if False:
-        from publican.engine.tests.sample import company
-        return company
-
-    # Find the Account object that represents this user business.
-
-    from ..engine.models import CompanyUser, Company
-    cu = CompanyUser.objects.select_related('company').get(user=request.user)
-    account = cu.company
-
-    # Wrap the Account in our facade, and return.
-
-    c = Company()
-    c.account = account
-    c.today = Date.today()
-    return c
-
 
 def _display_month(filing):
     """Decide in which month we will display a given filing.
