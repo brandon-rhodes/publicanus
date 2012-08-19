@@ -11,6 +11,8 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+INTERNAL_IPS = ('127.0.0.1',)
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -136,6 +138,14 @@ INSTALLED_APPS = (
     'publican.forms',
     'publican.frontend',
 )
+
+# The wonderous Toolbar!
+
+if DEBUG:
+    INSTALLED_APPS += ('debug_toolbar',)
+    MIDDLEWARE_CLASSES = MIDDLEWARE_CLASSES[:0] + (
+        'debug_toolbar.middleware.DebugToolbarMiddleware',
+        ) + MIDDLEWARE_CLASSES[0:]
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
