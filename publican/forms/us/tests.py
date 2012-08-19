@@ -19,8 +19,8 @@ class Test940(TestCase):
         form = get_form('us', '940')
         filings = form.tally(company, Year(2012))
         p = filings.pages[0]
-        self.assertEqual(p.line3, Decimal('9700.00'))
-        self.assertEqual(p.line6, Decimal('1800.00'))
+        self.assertEqual(p.line3, Decimal('24000.00'))
+        self.assertEqual(p.line6, Decimal('10000.00'))
         self.assertEqual(p.line14, Decimal('56.00'))
 
 
@@ -38,8 +38,8 @@ class Test941(TestCase):
         form = get_form('us', '941')
         filing = form.tally(company, Quarter(2012, 1))
         p = filing.pages[0]
-        self.assertEqual(p.line2, Decimal('7500.00'))
-        self.assertEqual(p.line3, Decimal('896.25'))
-        self.assertEqual(p.line5a2, Decimal('780.00'))
-        self.assertEqual(p.line5c2, Decimal('217.50'))
-        self.assertEqual(p.line14, Decimal('1893.75'))
+        self.assertEqual(p.line2, Decimal('10800.00'))
+        self.assertEqual(p.line3, Decimal('1290.60'))
+        self.assertEqual(p.line5a2, Decimal('1123.20'))
+        self.assertEqual(p.line5c2, Decimal('313.20'))
+        self.assertEqual(p.line14, Decimal('2727.00'))
