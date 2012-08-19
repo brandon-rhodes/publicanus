@@ -41,8 +41,23 @@ def create_demo(request):
                            models.Filing, models.Transaction,
                            assign_fake_ids=False)
 
-    for a in company._accounts:
-        a.save()
+    company._accounts[0].save()
+
+    company._accounts[1].save()
+    models.NameAddress(
+        account=company._accounts[1], name='Alice', address='123 Main, CA',
+        ).save()
+
+    company._accounts[2].save()
+    models.NameAddress(
+        account=company._accounts[1], name='Bob', address='37 Grove, OR',
+        ).save()
+
+    company._accounts[3].save()
+    models.NameAddress(
+        account=company._accounts[1], name='Carol', address='9110 W Bay, CA',
+        ).save()
+
     for f in company._filings:
         f.filer = f.filer
         f.save()
