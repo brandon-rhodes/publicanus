@@ -69,7 +69,7 @@ def build_sample(Account, Company, Filing, Transaction, assign_fake_ids=True):
 
     for month in months_range(Date(2011, 12, 1), Date(2012, 5, 1)):
         add(date=month.end, debit_account=business,
-            credit_account=alice, amount=Decimal(1600))
+            credit_account=bob, amount=Decimal(1600))
 
     # And she has an active consultant.
 
