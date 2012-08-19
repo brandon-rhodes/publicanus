@@ -42,10 +42,18 @@ class Company(company.Company):
     account = None
     today = None
 
-    def transactions(self, **kwargs):
-        # TODO
-        return []
+    def filings(self, form=None, period=None):
+        """Implement the standard transactions filter, as a Django query."""
+        q = Filing.objects
 
-    def filings(self, **kwargs):
+        if form is not None:
+            q = q.filter(region=form.region, name=form.name)
+
+        if period is not None:
+            q = q.filter(period=unicode(period))
+
+        return q.all()
+
+    def transactions(self, **kwargs):
         # TODO
         return []
