@@ -1,3 +1,4 @@
 Django==1.4.1
+django-tastypie==0.9.11
 gunicorn==0.14.6
 psycopg2

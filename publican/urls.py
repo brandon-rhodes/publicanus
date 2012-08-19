@@ -7,6 +7,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = patterns(
     '',
+    url(r'^api/', include('publican.api.urls')),
     url(r'^', include('publican.frontend.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
