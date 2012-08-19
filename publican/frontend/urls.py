@@ -4,5 +4,6 @@ urlpatterns = patterns(
     'publican.frontend.views',
     url(r'^$', 'index'),
     url(r'^accounts/login/$', 'login'),
+    url(r'^accounts/create_demo/$', 'create_demo'),
     url(r'^(\w+)/(\w+)/([-\w]+)/$', 'filing', name='filing'),
     )
