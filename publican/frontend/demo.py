@@ -2,7 +2,7 @@
 
 import random
 from string import ascii_lowercase
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render_to_response
 
@@ -15,6 +15,15 @@ def welcome_page(request):
 
     url = request.GET.get('next', '/')
     return render_to_response('publican/login.html', {'url': url})
+
+
+def goodbye_page(request):
+    """Say goodbye."""
+
+    if request.user.is_authenticated():
+        logout(request)
+
+    return render_to_response('publican/goodbye.html')
 
 
 def create_demo(request):

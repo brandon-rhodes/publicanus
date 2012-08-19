@@ -1,6 +1,5 @@
 {% extends "publican/_design.html" %}
 {% load publican %}
-{% load publican_api %}
 
 {% block title %}Form {{ form.name }} for {{ filing.period_name }}{% endblock %}
 
@@ -39,7 +38,8 @@
   <li>
     You {% if not forloop.first %}re-{% endif %}filed
     on {{ real_filing.date|mydate:"d B Y" }}
-    <a class="button delete-filing" data-url="TODO:put-api-url-here">×</a>
+    <a class="button delete-filing"
+       data-url="/api/v1/filing/{{ real_filing.id }}/">×</a>
     {% if not forloop.last %}<br>{% endif %}
     {% endfor %}
 </ul>
