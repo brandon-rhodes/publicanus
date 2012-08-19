@@ -106,7 +106,7 @@ def _get_company(request):
         from publican.engine.tests.sample import company
         return company
     from ..engine.models import CompanyUser, Company
-    cu = CompanyUser.objects.get(user=request.user)
+    cu = CompanyUser.objects.select_related('company').get(user=request.user)
     account = cu.company
     c = Company()
     c.account = account
