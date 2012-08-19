@@ -50,12 +50,12 @@ def create_demo(request):
 
     company._accounts[2].save()
     models.NameAddress(
-        account=company._accounts[1], name='Bob', address='37 Grove, OR',
+        account=company._accounts[2], name='Bob', address='37 Grove, OR',
         ).save()
 
     company._accounts[3].save()
     models.NameAddress(
-        account=company._accounts[1], name='Carol', address='9110 W Bay, CA',
+        account=company._accounts[3], name='Carol', address='9110 W Bay, CA',
         ).save()
 
     for f in company._filings:
