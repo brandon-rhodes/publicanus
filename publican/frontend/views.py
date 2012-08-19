@@ -99,13 +99,17 @@ def ledger(request):
     for transaction in transactions:
         row = Row()
 
+        row.is_new_year = (date is None or transaction.date.year != date.year)
+        row.is_new_date = (transaction.date != date)
+        date = transaction.date
+
         row.transaction = transaction
         row.debit_name = 'Your business'
         row.credit_name = account_names[transaction.credit_account_id]
 
-        row.is_new_year = (date is None or transaction.date.year != date.year)
-        row.is_new_date = (transaction.date != date)
-        date = transaction.date
+        row.purpose = ('consulting'
+                       if transaction.credit_account.type == 'consultant'
+                       else 'work')
 
         rows.append(row)
 

@@ -703,6 +703,11 @@ hgroup h1 {
 .ledger-table td:nth-child(3) {
   color: #a2935d;
 }
+.ledger-table td:nth-child(5) {
+  text-align: left;
+  font-size: 0.88889em;
+  color: #a2935d;
+}
 
 /* This table, from the Filing page, displays the values in a particular
    form as filed on a particular date. */

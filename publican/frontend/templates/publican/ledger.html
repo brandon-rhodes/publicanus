@@ -16,10 +16,10 @@
 <table class="main-timeline ledger-table">
   <tr>
     <th>
-    <th>When
+    <th>
     <th>From
     <th>To
-    <th>Comment
+    <th>For
     <th>Payment
   </tr>
   {% for row in rows %}
@@ -29,7 +29,7 @@
     <td>{% if row.is_new_date %}{{ t.date|mydate:"b d" }}{% else %}—{% endif %}
     <td>{{ row.debit_name }}
     <td>{{ row.credit_name }}
-    <td>{{ t.comment }}
+    <td>{{ row.purpose }}
     <td>{{ t.amount }}
   </tr>
   {% endwith %}

@@ -214,6 +214,11 @@ hgroup {
 .ledger-table {
     td:nth-child(2) { text-align: center; font-size: $smallnum; }
     td:nth-child(3) { color: $lighttext; }
+    td:nth-child(5) {
+        text-align: left;
+        font-size: $smallnum;
+        color: $lighttext;
+    }
 }
 
 /* This table, from the Filing page, displays the values in a particular
