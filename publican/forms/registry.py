@@ -58,7 +58,8 @@ class Form(object):
     one of its own classes.
 
     """
-    __slots__ = ('_module', 'region', 'name', 'title', 'grids', 'filename')
+    __slots__ = ('_module', 'region', 'name', 'title', 'grids',
+                 'filename', 'pdf_fields')
 
     def __init__(self, module):
         parts = module.__name__.split('.')
@@ -68,6 +69,7 @@ class Form(object):
         self.title = module.title
         self.grids = module.grids
         self.filename = module.filename
+        self.pdf_fields = module.pdf_fields
 
     def periods(self, company):
         """For what periods will the `company` have to submit this form?

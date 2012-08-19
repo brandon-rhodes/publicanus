@@ -73,3 +73,20 @@ grids = {
   x x line14
   """,
  }
+
+stride = 24
+
+pdf_fields = [
+ (140,688, 'name'),
+ (158,712, 'ein', 24),
+ (460,472, 'line3'),
+ (315,400, 'line5'),
+ (460,288 + 4 * stride, 'line6'),
+ (460,284 + 3 * stride, 'line7a'),
+ (274,288 + 2 * stride, 'line7a'), (460,284 + 2 * stride, 'line7c'),
+ (274,288 + stride, 'line7c'), (460,288 + stride, 'line7e'),
+ (460,288, 'line8'),
+ (460,192, 'line11'),
+ (460,156, 'line12'),
+ (460,92, 'line14'),
+ ]

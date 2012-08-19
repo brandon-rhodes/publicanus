@@ -23,8 +23,24 @@ def pdf(request, region, name, period_name):
     if form is None or period is None:
         raise Http404
 
+    filing = form.tally(company, period)
+
     c = canvas.Canvas("hello.pdf")
-    c.drawString(100,700,"Hello World")
+    for spec in form.pdf_fields:
+        x, y, name = spec[:3]
+        value = getattr(filing.pages[0], name, None)
+        if value is None:
+            value = u''
+        else:
+            value = unicode(value)
+        print repr(value)
+        if len(spec) == 3:
+            c.drawString(x, y, value)
+        else:
+            step = spec[3]
+            for i, char in enumerate(value):
+                c.drawString(x + i * step, y, char)
+
     c.showPage()
 
     datadir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data')
