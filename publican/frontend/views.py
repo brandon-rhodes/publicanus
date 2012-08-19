@@ -15,6 +15,9 @@ class Row(object):
 @login_required
 def index(request):
     company = _get_company(request)
+    company.preload_filings()
+    company.preload_transactions()
+
     transactions = company.transactions
     filings_by_month = defaultdict(list)
 

@@ -36,6 +36,21 @@ class Transaction(types.Transaction, models.Model):
 
 
 class Company(company.Company):
+    """Our `Company` facade, backed by a Django database.
+
+    See the parent `Company` class for more about the interface.
+
+    One weakness of being backed by a real database is that it can get
+    expensive to run the above filters many times per page; the front
+    page, for example, needs to run .filings() twice for every month it
+    displays!  Thanks to having separated our business logic out into a
+    separate class, we have an easy solution: we offer complex pages the
+    ability to pre-cache all of the data that first within the page's
+    overall time period.  From that point on, all of their filtering is
+    applied to the objects already cached in memory, instead of going
+    out to hit the database again.
+
+    """
     ein='38-0218963'
     name='Crazy R Software'
     incorporation_date=Date(2011, 8, 1)
@@ -46,6 +61,9 @@ class Company(company.Company):
 
     def filings(self, form=None, period=None):
         """Implement the standard filings filter, as a Django query."""
+
+        if self._filings is not None:
+            return company.Company.filings(self, form=form, period=period)
 
         q = Filing.objects
 
@@ -60,6 +78,11 @@ class Company(company.Company):
     def transactions(self, within=None, debit_type=None, credit_type=None):
         """Implement the standard transactions filter, as a Django query."""
 
+        if self._transactions is not None:
+            return company.Company.transactions(
+                self, within=within, debit_type=debit_type,
+                credit_type=credit_type)
+
         q = Transaction.objects
 
         if within is not None:
@@ -72,4 +95,4 @@ class Company(company.Company):
         if credit_type is not None:
             q = q.filter(credit_account__type=credit_type)
 
-        return q.all()
+        return q.select_related('debit_account', 'credit_account')

@@ -43,3 +43,22 @@ class Company(object):
     def transactions(self, **kw):
         """Return all `Transaction` objects matching the given constraints."""
         return filtering.filter_transactions(self._transactions, **kw)
+
+    def preload_filings(self, **kw):
+        """Narrow the set of filings that filings() searches from now on.
+
+        Once this has been called on a Company, *all* further filings()
+        calls merely do an in-memory search of the pre-loaded result.
+
+        """
+        self._filings = list(self.filings(**kw))
+
+    def preload_transactions(self, **kw):
+        """Narrow the transactions list that transactions() searches.
+
+        Once this has been called on a Company, *all* further
+        transactions() calls merely do an in-memory search of the
+        pre-loaded result.
+
+        """
+        self._transactions = list(self.transactions(**kw))
