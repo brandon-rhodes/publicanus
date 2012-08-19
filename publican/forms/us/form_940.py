@@ -7,8 +7,6 @@ _sevenk = Decimal('7000.00')
 _eighthpercent = Decimal('.008')
 _sixthpercent = Decimal('.006')
 
-region = u"us"
-name = u"940"
 title = u"Employer's Annual Federal Unemployment (FUTA) Tax Return"
 
 

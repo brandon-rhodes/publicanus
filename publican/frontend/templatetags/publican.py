@@ -13,16 +13,16 @@ register = template.Library()
 def href(obj):
     """Lets the URL to an object be constructed with {{ obj|link }}.
 
-    This encapsulates our URL-building logic, in contrast to the shoddy
-    Django practice of littering templates with {% url %} calls that
-    have to all be hand-edited when a view name changes or needs to take
-    different parameters: {% url 'path.to.some_view' v1 v2 %}
+    This encapsulates our URL-building logic in one single place, in
+    contrast to the usual Django practice of littering every template
+    with {% url %} calls that have to all be hand-edited in the future
+    when a view name changes, or needs to take different parameters.
 
     """
     common = sys.modules['publican.forms.common']  # avoid weird ImportError
 
     if isinstance(obj, common.Filing):
-        region = obj.form.__name__.split('.')[-2]
+        region = obj.form.region
         name = obj.form.name
         return reverse('filing', args=(region, name, unicode(obj.period)))
     else:

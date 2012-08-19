@@ -72,11 +72,10 @@ def index(request):
 
 
 def filing(request, region, name, period_name):
-    forms = [ f for f in registry.forms_for(region) if f.name == name ]
+    form = registry.get_form(region, name)
     period = get_period(period_name, None)
-    if len(forms) != 1 or period is None:
+    if form is None or period is None:
         raise Http404
-    form = forms[0]
     filing = Filing(form, period)
     filing.tally(company)
     return render_to_response('publican/filing.html', {
