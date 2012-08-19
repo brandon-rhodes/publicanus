@@ -42,8 +42,11 @@ class Company(company.Company):
     account = None
     today = None
 
+    # Filters.
+
     def filings(self, form=None, period=None):
-        """Implement the standard transactions filter, as a Django query."""
+        """Implement the standard filings filter, as a Django query."""
+
         q = Filing.objects
 
         if form is not None:
@@ -54,6 +57,19 @@ class Company(company.Company):
 
         return q.all()
 
-    def transactions(self, **kwargs):
-        # TODO
-        return []
+    def transactions(self, within=None, debit_type=None, credit_type=None):
+        """Implement the standard transactions filter, as a Django query."""
+
+        q = Transaction.objects
+
+        if within is not None:
+            period = within
+            q = q.filter(date__gte=period.start, date__lte=period.end)
+
+        if debit_type is not None:
+            q = q.filter(debit_account__type=debit_type)
+
+        if credit_type is not None:
+            q = q.filter(credit_account__type=credit_type)
+
+        return q.all()
