@@ -14,31 +14,38 @@ I have tried to direct my effort towards creating
 a beautiful and extensible core for further development.
 There were three main ideas that I wanted this prototype to illustrate.
 
-* The timeline on the main page
-  is the image that first popped into my head, several months ago,
-  and that eventually led to my choice of project.
+* The idea of the timeline that lives on the main page
+  is the vision that first popped into my head, several months ago,
+  and that eventually led to my choosing this project.
   It is, in miniature, exactly what I need:
   a view that lets me step back and look at the big picture
-  of what tax obligations are approaching and need to be dealt with.
+  of what tax obligations are approaching
+  and what I will need to do to satisfy them.
 
-* The interface that tax form code uses to traverse data
+* The interface that tax form code uses to traverse business data
   was another major focus of attention.
   The last thing I want
-  is to burden the authors of future tax form modules
+  is to burden the authors of future Publican tax-form modules
   with a finicky and fragile interface;
-  instead, I want to hide the database from them completely
+  instead, I want to hide the database from them completely,
   and give them an easy way to view its data
   without getting tangled up in ORM details.
-  I also wanted form logic to be strongly decoupled
+  I also wanted tax-form computation logic to be strongly decoupled
   from the rest of the application —
-  you will note, if you review the two tax forms I have mocked up,
+  you will note,
+  if you review the Python code
+  for [Form 940](https://github.com/brandon-rhodes/publicanus/blob/master/publican/forms/us/form_940.py)
+  and [Form 941](https://github.com/brandon-rhodes/publicanus/blob/master/publican/forms/us/form_941.py)
+  that I have mocked up,
   that the interface is *completely* functional,
-  without any state at all.
+  and persists no state at all between calls.
   Tax form modules do not even define any classes;
-  they simply define functions!
+  they simply define functions, along with a few data structures
+  to support HTML and PDF rendering!
 
-* The most exciting stunt, I suppose, was filling out PDFs,
-  and it really surprised me by working on the first try
+* The most exciting stunt, I suppose, was the code in `documents.py`
+  that fills out and renders PDF tax forms,
+  and it really surprised me that my scheme worked on its first try
   without any complaint.
   Some day the process might fall over
   if we try giving it some obscure state tax form
